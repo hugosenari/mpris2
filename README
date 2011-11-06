@@ -1,0 +1,26 @@
+Python usable definiton of MPRIS2
+
+require pydbusdecorator (https://github.com/hugosenari/pydbusdecorator)
+
+usage:
+
+    from mpris2.player.Player
+    from some_players import Some_PLayers
+    gmb = Interfaces.MEDIA_PLAYER + '.' + Some_PLayers.GMUSICBROWSER
+    mp2 = Player(dbus_uri=gmb)
+    from dbus.mainloop.glib import DBusGMainLoop
+    DBusGMainLoop(set_as_default=True)
+    import gobject
+    
+    def my_handler(self, Position):
+        print 'handled', Position, type(Position)
+        print 'self handled', self.last_fn_return, type(self.last_fn_return)
+    
+    def another_handler(self, *args, **kw): 
+        print args, kw
+
+    mloop = gobject.MainLoop()
+    print mp2.Seeked
+    mp2.Seeked = my_handler
+    mp2.PropertiesChanged = another_handler
+    mloop.run()
