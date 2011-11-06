@@ -74,5 +74,6 @@ Interfaces
 * org.mpris.MediaPlayer2.Player
 * org.mpris.MediaPlayer2.Playlists
 '''
+
 if __name__ == '__main__':
     pass
