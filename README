@@ -1,4 +1,4 @@
-Python usable definiton of MPRIS2
+Python usable definiton of MPRIS2 (http://www.mpris.org/2.1/spec/)
 
 require pydbusdecorator (https://github.com/hugosenari/pydbusdecorator)
 
