@@ -155,19 +155,19 @@ class MediaPlayer2(Interfaces):
         pass
 
 if __name__ == '__main__':
-    from some_players import Some_PLayers
-    gmb_uri = Interfaces.MEDIA_PLAYER + '.' + Some_PLayers.GMUSICBROWSER
+    from mpris2.utils import SomePlayers
+    gmb_uri = Interfaces.MEDIA_PLAYER + '.' + SomePlayers.GMUSICBROWSER
     mp2 = MediaPlayer2(dbus_uri=gmb_uri)
     print mp2.SupportedUriSchemes
-    
-    
-    from dbus.mainloop.glib import DBusGMainLoop
-    DBusGMainLoop(set_as_default=True)
-    import gobject
-    
-    def another_handler(self, *args, **kw): 
-        print args, '\n', kw
-
-    mloop = gobject.MainLoop()
-    mp2.PropertiesChanged = another_handler
-    mloop.run()
+#    
+#    
+#    from dbus.mainloop.glib import DBusGMainLoop
+#    DBusGMainLoop(set_as_default=True)
+#    import gobject
+#    
+#    def another_handler(self, *args, **kw): 
+#        print args, '\n', kw
+#
+#    mloop = gobject.MainLoop()
+#    mp2.PropertiesChanged = another_handler
+#    mloop.run()

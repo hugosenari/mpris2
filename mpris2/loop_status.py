@@ -1,7 +1,8 @@
-from pydbusdecorator.dbus_data import DbusData
+NONE = 'None'
+TRACK = 'Track'
+PLAYLIST = 'Playlist'
 
-@DbusData()
-class Loop_Status(object):
+class Loop_Status(str):
     '''
     A repeat / loop status
     *None (None)
@@ -11,19 +12,20 @@ class Loop_Status(object):
     *Playlist (Playlist)
         The playback loops through a list of tracks
     '''
-    NONE = None
-    TRACK = 'Track'
-    PLAYLIST = 'Playlist'
+    VALUES = (NONE, TRACK, PLAYLIST)
+    def __init__(self, status, *args, **kw):
+        super(Loop_Status, self).__init__(status, *args, **kw)
+        self._status = status
     
-    def __init__(self, mstr):
-        self._status = mstr
+    def __int__(self, *args, **kwargs):
+        return int(Loop_Status.VALUES.index(self._status), *args, **kwargs)
     
-    @property
-    def status(self):
-        return self._status
-    
-    def __str__(self):
-        return self.status
-    
-    def __get__(self, obj, objtype=None):
-        return obj.status if obj else self
+Loop_Status.NONE = Loop_Status(NONE)
+Loop_Status.TRACK = Loop_Status(TRACK)
+Loop_Status.PLAYLIST = Loop_Status(PLAYLIST)
+
+if  __name__ == "__main__":
+    print Loop_Status.PLAYLIST
+    print type(Loop_Status.PLAYLIST)
+    print Loop_Status.PLAYLIST == NONE 
+    print Loop_Status.PLAYLIST == PLAYLIST

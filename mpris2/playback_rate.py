@@ -1,7 +1,4 @@
-from pydbusdecorator.dbus_data import DbusData
-
-@DbusData()
-class Playback_Rate(object):
+class Playback_Rate(float):
     '''
     A playback rate
     This is a multiplier,
@@ -10,10 +7,13 @@ class Playback_Rate(object):
     '''
     def __init__(self, rate=1.0):
         self._rate = rate
+        super(Playback_Rate, self).__init__(rate)
         
     @property
     def rate(self):
         return self._rate
+
     
-    def __get__(self, obj, objtype=None):
-        return obj.rate if obj else self
+if __name__ == "__main__":
+    pr = Playback_Rate(12)
+    print pr == '12'

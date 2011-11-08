@@ -7,7 +7,7 @@ from pydbusdecorator.dbus_interface import DbusInterface
 from pydbusdecorator.dbus_method import DbusMethod
 from pydbusdecorator.dbus_signal import DbusSignal
 from mpris2.interfaces import Interfaces
-
+from mpris2.types import Metadata_Map
 
 @DbusInterface(Interfaces.TRACK_LIST, Interfaces.OBJECT_PATH)
 class TrackList(Interfaces):
@@ -28,7 +28,8 @@ class TrackList(Interfaces):
     SIGNALS_TRACK_METADATA_CHANGED = 'TrackMetadataChanged'
     SIGNALS_PROPERTIES_CHANGED = 'PropertiesChanged'
     
-    @DbusMethod
+    @DbusMethod(produces=lambda map_list:\
+                [Metadata_Map(metadata_map) for metadata_map in map_list])
     def GetTracksMetadata(self, TrackIds):
         '''
         ==========
@@ -190,8 +191,8 @@ class TrackList(Interfaces):
         pass
     
 if __name__ == '__main__':
-    from some_players import Some_PLayers
-    gmb = Interfaces.MEDIA_PLAYER + '.' + Some_PLayers.GMUSICBROWSER
+    from mpris2.utils import SomePlayers
+    gmb = Interfaces.MEDIA_PLAYER + '.' + SomePlayers.GMUSICBROWSER
     mp2 = TrackList(dbus_uri=gmb)
     print mp2
     mp2.GetTracksMetadata('12345')

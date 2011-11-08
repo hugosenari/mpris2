@@ -6,6 +6,7 @@ Created on Nov 6, 2011
 '''
 
 import dbus, re
+from mpris2.some_players import Some_Players as SomePlayers
 
 def get_session():
     '''
@@ -22,7 +23,17 @@ def get_players_uri(pattern=None):
     return [item
         for item in get_session().list_names()
             if _match_players_uri(item, pattern)]
-
+    
+def get_intances_of(what_to_instantiate, pattern):
+    """
+        Return new instance of what_to_instantiate
+        @param what_to_instantiate: class or function with dbus_uri only param
+        @param pattern=None: string regexo that filter response
+        @return: array string of players bus name
+    """
+    return [what_to_instantiate(dbus_uri=item)
+        for item in get_session().list_names()
+            if _match_players_uri(item, pattern)]
 
 def _match_players_uri(name, pattern=None):
     '''
@@ -39,3 +50,4 @@ def _match_players_uri(name, pattern=None):
 
 if __name__ == '__main__':
     print get_players_uri()
+    print SomePlayers.get_dict()

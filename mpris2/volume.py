@@ -1,10 +1,7 @@
 '''
 Audio Volume
 '''
-from pydbusdecorator.dbus_data import DbusData
-
-@DbusData()
-class Volume(object):
+class Volume(float):
     '''
     Audio volume level
     *0.0 means mute.
@@ -14,15 +11,16 @@ class Volume(object):
 
     MIN = 0.0
     MAX = 1.0
-    RANGE = set(range(0, 1, 0.1))
+    RANGE = set([n/10.0 for n in range(11)])
     
-    def __init__(self, volume=1.0):
+    def __init__(self, volume=1.0, *args, **kw):
+        super(Volume, self).__init__(volume, *args, **kw)
         self._volume = volume
         
     @property
     def volume(self):
         '''Get volume atrribute'''
         return self._volume
-
-    def __get__(self, obj, objtype=None):
-        return obj.volume if obj else self
+    
+if __name__ == "__main__":
+    print Volume(1)

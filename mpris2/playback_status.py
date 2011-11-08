@@ -1,7 +1,8 @@
-from pydbusdecorator.dbus_data import DbusData
+PLAYING = 'Playing'
+PAUSED = 'Paused'
+STOPPED = 'Stopped'
 
-@DbusData()
-class Playback_Status(object):
+class Playback_Status(str):
     '''
     A playback state.
     *Playing (Playing)
@@ -11,16 +12,19 @@ class Playback_Status(object):
     *Stopped (Stopped)
         There is no track currently playing.
     '''
-    PLAYING = 'Playing'
-    PAUSED = 'Paused'
-    STOPPED = 'Stopped'
+    VALUES = (PLAYING, PAUSED, STOPPED)
     
-    def __init__(self, mstr):
-        self._status = mstr
+    def __init__(self, status, *args, **kw):
+        super(Playback_Status, self).__init__(status, *args, **kw)
+        self._status = status
     
     @property
     def status(self):
         return self._status
     
-    def __get__(self, obj, objtype=None):
-        return obj.status if obj else self
+    def __int__(self, *args, **kwargs):
+        return int(Playback_Status.VALUES.index(self._status), *args, **kwargs)
+
+Playback_Status.PLAYING = PLAYING
+Playback_Status.PAUSED = PAUSED
+Playback_Status.STOPPED = STOPPED

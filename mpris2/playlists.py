@@ -7,6 +7,7 @@ from pydbusdecorator.dbus_interface import DbusInterface
 from pydbusdecorator.dbus_method import DbusMethod
 from pydbusdecorator.dbus_signal import DbusSignal
 from mpris2.interfaces import Interfaces
+from mpris2.types import Playlist, Maybe_Playlist
 
 
 @DbusInterface(Interfaces.PLAYLISTS, Interfaces.OBJECT_PATH)
@@ -16,13 +17,13 @@ class Playlists(Interfaces):
     Since D-Bus does not provide an easy way to check for what interfaces are exported on an object, clients should attempt to get one of the properties on this interface to see if it is implemented.
     '''
     
-    @DbusMethod()
+    @DbusMethod
     def ActivatePlaylist(self, PlaylistId):
         '''
         ==========
         Parameters
         ==========
-        *PlaylistId — o
+        *PlaylistId - o
             The id of the playlist to activate.
 
         Starts playing the given playlist.
@@ -31,37 +32,38 @@ class Playlists(Interfaces):
         '''
         pass
     
-    @DbusMethod()
+    @DbusMethod(produces=lambda playlist_list: \
+                [Playlist(playlist) for playlist in playlist_list])
     def GetPlaylists(self, Index, MaxCount, Order, ReverseOrder=False):
         '''
         ==========
         Parameters
         ==========
-        *Index — u
+        *Index - u
             The index of the first playlist to be fetched (according to the ordering).
-        *MaxCount — u
+        *MaxCount - u
             The maximum number of playlists to fetch.
-        *Order — s (Playlist_Ordering)
+        *Order - s (Playlist_Ordering)
             The ordering that should be used.
-        *ReverseOrder — b
+        *ReverseOrder - b
             Whether the order should be reversed.
         =======
         Returns
         =======
-        *Playlists — a(oss) (Playlist_List)
+        *Playlists - a(oss) (Playlist_List)
             A list of (at most MaxCount) playlists.
     
         Gets a set of playlists.
         '''
         pass
     
-    @DbusSignal()
+    @DbusSignal
     def PlaylistChanged(self, Playlist):
         '''
         ==========
         Parameters
         ==========
-        *Playlist — (oss) (Playlist)
+        *Playlist - (oss) (Playlist)
             The playlist whose details have changed.
     
         Indicates that the name or icon for a playlist has changed.
@@ -69,8 +71,7 @@ class Playlists(Interfaces):
         '''
         pass
     
-    @DbusAttr()
-    @property
+    @DbusAttr
     def PlaylistCount(self):
         '''
         Read only
@@ -80,8 +81,7 @@ class Playlists(Interfaces):
         '''
         pass
     
-    @DbusAttr()
-    @property
+    @DbusAttr
     def Orderings(self):
         '''
         Read only
@@ -91,8 +91,7 @@ class Playlists(Interfaces):
         '''
         pass
     
-    @DbusAttr()
-    @property
+    @DbusAttr(produces=Maybe_Playlist)
     def ActivePlaylist(self):
         '''
         Read only

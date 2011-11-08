@@ -9,7 +9,8 @@ from pydbusdecorator.dbus_method import DbusMethod
 from pydbusdecorator.dbus_signal import DbusSignal
 
 from mpris2.interfaces import Interfaces
-from mpris2.time_in_us import Time_In_Us
+from mpris2.types import Time_In_Us, Loop_Status, Playback_Status, \
+Playback_Rate, Metadata_Map, Volume
 
 @DbusInterface(Interfaces.PLAYER, Interfaces.OBJECT_PATH)
 class Player(Interfaces):
@@ -162,7 +163,7 @@ class Player(Interfaces):
         """
         pass
     
-    @DbusAttr
+    @DbusAttr(produces=Playback_Status)
     def PlaybackStatus(self):
         '''
         Read only
@@ -172,7 +173,7 @@ class Player(Interfaces):
         '''
         pass
     
-    @DbusAttr
+    @DbusAttr(produces=Loop_Status)
     def LoopStatus(self):
         '''
         Read/Write
@@ -188,7 +189,7 @@ class Player(Interfaces):
         '''
         pass    
 
-    @DbusAttr
+    @DbusAttr(produces=Playback_Rate)
     def Rate(self):
         '''
         Read/Write
@@ -212,7 +213,7 @@ class Player(Interfaces):
         '''
         pass
 
-    @DbusAttr
+    @DbusAttr(produces=Metadata_Map)
     def Metadata(self):
         '''
         Read only
@@ -224,7 +225,7 @@ class Player(Interfaces):
         '''
         pass
 
-    @DbusAttr
+    @DbusAttr(produces=Volume)
     def Volume(self):
         '''
         Read/Write
@@ -279,7 +280,6 @@ class Player(Interfaces):
         
         Whether the client can call the Next method on this interface and expect the current track to change.
         If CanControl is false, this property should also be false.
-        If CanControl is false, this property should also be false.
         '''
         pass
     
@@ -290,7 +290,6 @@ class Player(Interfaces):
             When this property changes, the org.freedesktop.DBus.Properties.PropertiesChanged signal is emitted with the new value.
         
         Whether the client can call the Previous method on this interface and expect the current track to change.
-        If CanControl is false, this property should also be false.
         If CanControl is false, this property should also be false.
         '''
         pass
@@ -343,22 +342,24 @@ class Player(Interfaces):
         pass
     
 if __name__ == '__main__':
-    from mpris2.some_players import Some_PLayers
-    gmb = Interfaces.MEDIA_PLAYER + '.' + Some_PLayers.GMUSICBROWSER
+    from mpris2.utils import SomePlayers
+    gmb = Interfaces.MEDIA_PLAYER + '.' + SomePlayers.GMUSICBROWSER
     mp2 = Player(dbus_uri=gmb)
-    from dbus.mainloop.glib import DBusGMainLoop
-    DBusGMainLoop(set_as_default=True)
-    import gobject
-    
-    def my_handler(self, Position):
-        print 'handled', Position, type(Position)
-        print 'self handled', self.last_fn_return, type(self.last_fn_return)
-    
-    def another_handler(self, *args, **kw): 
-        print args, kw
-
-    mloop = gobject.MainLoop()
-    print mp2.Seeked
-    mp2.Seeked = my_handler
-    mp2.PropertiesChanged = another_handler
-    mloop.run()
+    print type(mp2.LoopStatus)
+    print type(mp2.CanControl)
+#    from dbus.mainloop.glib import DBusGMainLoop
+#    DBusGMainLoop(set_as_default=True)
+#    import gobject
+#    
+#    def my_handler(self, Position):
+#        print 'handled', Position, type(Position)
+#        print 'self handled', self.last_fn_return, type(self.last_fn_return)
+#    
+#    def another_handler(self, *args, **kw): 
+#        print args, kw
+#
+#    mloop = gobject.MainLoop()
+#    print mp2.Seeked
+#    mp2.Seeked = my_handler
+#    mp2.PropertiesChanged = another_handler
+#    mloop.run()

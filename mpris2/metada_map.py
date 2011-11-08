@@ -1,7 +1,4 @@
-from pydbusdecorator.dbus_data import DbusData
-
-@DbusData()
-class Metadata_Map(object):
+class Metadata_Map(dict):
     '''
     A mapping from metadata attribute names to values.
     The mpris:trackid attribute must always be present. This contains a string that uniquely identifies the track within the scope of the playlist.
@@ -36,12 +33,14 @@ class Metadata_Map(object):
     USE_COUNT = 'xesam:useCount'
     USER_RATING = 'xesam:userRating'
     
-    def __init__(self, metadata):
+    def __init__(self, metadata, *args, **kw):
         self._metadata = metadata
-    
+        super(Metadata_Map, self).__init__(metadata,*args, **kw)
+        
     @property
     def metadata(self):
         return self._metadata
-    
-    def __get__(self, obj, objtype=None):
-        return obj.metadata if obj else self
+
+if __name__ == "__main__":
+    mdm = Metadata_Map({Metadata_Map.ALBUM : "Marcelo Nova Ao Vivo"})
+    print mdm[Metadata_Map.ALBUM]
