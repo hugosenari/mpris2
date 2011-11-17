@@ -21,9 +21,6 @@ class Playback_Status(str):
     @property
     def status(self):
         return self._status
-    
-    def __int__(self, *args, **kwargs):
-        return int(Playback_Status.VALUES.index(self._status), *args, **kwargs)
 
 Playback_Status.PLAYING = PLAYING
 Playback_Status.PAUSED = PAUSED

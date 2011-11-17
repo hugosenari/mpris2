@@ -1,4 +1,5 @@
-class Playlist(object):
+from dbus import Struct
+class Playlist(Struct):
     '''
     A data structure describing a playlist.
     *Id - o (Playlist_Id)
@@ -10,23 +11,26 @@ class Playlist(object):
         The URI of an (optional) icon.
     '''
     def __init__(self, playlist):
-        self._Id = playlist.get('Id')
-        self._Name = playlist.get('Name')
-        self._Icon = playlist.get('Icon')
+        Struct.__init__(
+           self,
+           iter(playlist),
+           signature=playlist.signature,
+           variant_level=playlist.variant_level
+        )
     
     @property
     def Id(self):
-        return self._Id
+        return self[0]
     
     @property
     def Name(self):
-        return self._Name
+        return self[1]
     
     @property
     def Icon(self):
-        return self._Icon
+        return self[2]
 
-class Maybe_Playlist(Playlist):
+class Maybe_Playlist(Struct):
     '''
     *Valid - b
         Whether this structure refers to a valid playlist.
@@ -36,17 +40,23 @@ class Maybe_Playlist(Playlist):
     '''
     
     def __init__(self, maybe_playlist=None):
-        self._valid = maybe_playlist[0]
-        ## isn't none, copy playlist info
-        if maybe_playlist != None:
-            super(Maybe_Playlist, self).__init__(maybe_playlist[1])
-        ## else ins't valid
-        else:
-            self._valid = False
-    
+        Struct.__init__(
+           self,
+           (maybe_playlist[0], maybe_playlist[1]),
+           signature=maybe_playlist.signature,
+           variant_level=maybe_playlist.variant_level
+        )
+
     @property
     def Valid(self):
-        return self._valid
+        return self[0]
+    
+    @property
+    def Playlist(self):
+        return Playlist(self[1])
+    
+    def __nonzero__(self):
+        return bool(self.Valid)
     
     def __bool__(self):
-        return self._valid
+        return self.__nonzero__()

@@ -345,8 +345,10 @@ if __name__ == '__main__':
     from mpris2.utils import SomePlayers
     gmb = Interfaces.MEDIA_PLAYER + '.' + SomePlayers.GMUSICBROWSER
     mp2 = Player(dbus_uri=gmb)
-    print type(mp2.LoopStatus)
-    print type(mp2.CanControl)
+    print mp2.LoopStatus
+    print mp2.Shuffle
+    mp2.Shuffle = False if mp2.Shuffle else True
+    print mp2.Shuffle
 #    from dbus.mainloop.glib import DBusGMainLoop
 #    DBusGMainLoop(set_as_default=True)
 #    import gobject

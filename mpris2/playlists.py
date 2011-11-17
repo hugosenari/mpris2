@@ -8,6 +8,7 @@ from pydbusdecorator.dbus_method import DbusMethod
 from pydbusdecorator.dbus_signal import DbusSignal
 from mpris2.interfaces import Interfaces
 from mpris2.types import Playlist, Maybe_Playlist
+from dbus import UInt32
 
 
 @DbusInterface(Interfaces.PLAYLISTS, Interfaces.OBJECT_PATH)
@@ -33,7 +34,8 @@ class Playlists(Interfaces):
         pass
     
     @DbusMethod(produces=lambda playlist_list: \
-                [Playlist(playlist) for playlist in playlist_list])
+                    [Playlist(playlist) for playlist in playlist_list],
+                args_to_dbus=[UInt32, UInt32, str, bool])
     def GetPlaylists(self, Index, MaxCount, Order, ReverseOrder=False):
         '''
         ==========
@@ -102,3 +104,21 @@ class Playlists(Interfaces):
         Note that this may not have a value even after ActivatePlaylist is called with a valid playlist id as ActivatePlaylist implementations have the option of simply inserting the contents of the playlist into the current tracklist.
         '''
         pass
+    
+if __name__ == '__main__':
+    from mpris2.utils import SomePlayers
+    uri = Interfaces.MEDIA_PLAYER + '.' + SomePlayers.RHYTHMBOX
+    mp2 = Playlists(dbus_uri=uri)
+    print mp2.ActivePlaylist
+    print 'Active is valid playlist: ', bool(mp2.ActivePlaylist)
+    if mp2.ActivePlaylist:
+        print 'Active playlist name:', mp2.ActivePlaylist.Playlist.Name
+    from mpris2.types import Playlist_Ordering
+    print UInt32
+    print hasattr('anystring', 'eusequenaotem')
+    print 'bla', mp2.GetPlaylists(0, 20, Playlist_Ordering.ALPHABETICAL, False)
+    
+    
+    
+    
+    
