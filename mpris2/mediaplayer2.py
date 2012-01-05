@@ -12,7 +12,7 @@ from pydbusdecorator.dbus_signal import DbusSignal
 from mpris2.interfaces import Interfaces
 
 
-@DbusInterface(Interfaces.MEDIA_PLAYER, Interfaces.OBJECT_PATH, prop_iface=Interfaces.PROPERTIES)
+@DbusInterface(Interfaces.MEDIA_PLAYER, Interfaces.OBJECT_PATH)
 class MediaPlayer2(Interfaces):
     '''
     Interface for MediaPlayer2 (org.mpris.MediaPlayer2)
@@ -50,7 +50,7 @@ class MediaPlayer2(Interfaces):
         =======
         Returns
         =======
-        Read only
+        Read onlyInject attrs from decorator at new object then return obje
             When this property changes, the org.freedesktop.DBus.Properties.PropertiesChanged signal is emitted with the new value.
         If false, calling Quit will have no effect, and may raise a NotSupported error. If true, calling Quit will cause the media application to attempt to quit (although it may still be prevented from quitting by the user, for example).
         """
@@ -156,8 +156,8 @@ class MediaPlayer2(Interfaces):
 
 if __name__ == '__main__':
     from mpris2.utils import SomePlayers
-    gmb_uri = Interfaces.MEDIA_PLAYER + '.' + SomePlayers.GMUSICBROWSER
-    mp2 = MediaPlayer2(dbus_uri=gmb_uri)
+    uri = Interfaces.MEDIA_PLAYER + '.' + SomePlayers.GMUSICBROWSER
+    mp2 = MediaPlayer2(dbus_interface_info={'dbus_uri': uri})
     print mp2.SupportedUriSchemes
 #    
 #    

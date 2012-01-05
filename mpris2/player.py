@@ -343,25 +343,28 @@ class Player(Interfaces):
     
 if __name__ == '__main__':
     from mpris2.utils import SomePlayers
-    gmb = Interfaces.MEDIA_PLAYER + '.' + SomePlayers.GMUSICBROWSER
-    mp2 = Player(dbus_uri=gmb)
-    print mp2.LoopStatus
-    print mp2.Shuffle
-    mp2.Shuffle = False if mp2.Shuffle else True
-    print mp2.Shuffle
-#    from dbus.mainloop.glib import DBusGMainLoop
-#    DBusGMainLoop(set_as_default=True)
-#    import gobject
-#    
-#    def my_handler(self, Position):
-#        print 'handled', Position, type(Position)
-#        print 'self handled', self.last_fn_return, type(self.last_fn_return)
-#    
-#    def another_handler(self, *args, **kw): 
-#        print args, kw
-#
-#    mloop = gobject.MainLoop()
-#    print mp2.Seeked
-#    mp2.Seeked = my_handler
-#    mp2.PropertiesChanged = another_handler
-#    mloop.run()
+    #uri = Interfaces.MEDIA_PLAYER + '.' + SomePlayers.GMUSICBROWSER
+    #mp2 = Player(dbus_interface_info={'dbus_uri': uri})
+    #print mp2.LoopStatus
+    #print mp2.Shuffle
+    #mp2.Shuffle = False if mp2.Shuffle else True
+    #print mp2.Shuffle
+    from dbus.mainloop.glib import DBusGMainLoop
+    DBusGMainLoop(set_as_default=True)
+    import gobject
+    
+    def my_handler(self, Position):
+        print 'handled', Position, type(Position)
+        print 'self handled', self.last_fn_return, type(self.last_fn_return)
+    
+    def another_handler(self, *args, **kw): 
+        print args, kw
+
+    mloop = gobject.MainLoop()
+    #print mp2.Seeked
+    #mp2.Seeked = my_handler
+    #mp2.PropertiesChanged = another_handler
+    from mpris2.utils import get_session
+    s = get_session()
+    s.add_signal_receiver(another_handler, "PropertiesChanged", "org.freedesktop.DBus.Properties", path="/org/mpris/MediaPlayer2")
+    mloop.run()

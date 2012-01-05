@@ -8,10 +8,11 @@ Created on Nov 6, 2011
 from distutils.core import setup
 
 setup(name='mpris2',
-      version='0.9.1',
+      version='0.9.3',
       description='Python mpris2 definition',
       author='hugosenari',
       author_email='hugosenari@gmail.com',
       url='https://github.com/hugosenari/mpris2',
       packages=('mpris2',),
+      requires=['pydbusdecorator (>=1.0)'],
      )

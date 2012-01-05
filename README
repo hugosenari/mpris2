@@ -6,8 +6,8 @@ usage:
 
     from mpris2.player.Player
     from mpris2.some_players import Some_PLayers
-    gmb = Interfaces.MEDIA_PLAYER + '.' + Some_PLayers.GMUSICBROWSER
-    mp2 = Player(dbus_uri=gmb) #gmb = 'org.mpris.MediaPlayer2.gmusicbrowser'
+    uri = Interfaces.MEDIA_PLAYER + '.' + Some_PLayers.GMUSICBROWSER
+    mp2 = Player(dbus_interface_info={'dbus_uri': uri}) #uri = 'org.mpris.MediaPlayer2.gmusicbrowser'
 
     #call methods
     mp2.Next() #play next media

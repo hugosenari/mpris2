@@ -193,5 +193,5 @@ class TrackList(Interfaces):
 if __name__ == '__main__':
     from mpris2.utils import SomePlayers
     uri = Interfaces.MEDIA_PLAYER + '.' + SomePlayers.GMUSICBROWSER
-    mp2 = TrackList(dbus_uri=uri) #some one know any player that support it?
+    mp2 = TrackList(dbus_interface_info={'dbus_uri': uri}) #some one know any player that support it?
     print mp2

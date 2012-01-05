@@ -108,7 +108,7 @@ class Playlists(Interfaces):
 if __name__ == '__main__':
     from mpris2.utils import SomePlayers
     uri = Interfaces.MEDIA_PLAYER + '.' + SomePlayers.RHYTHMBOX
-    mp2 = Playlists(dbus_uri=uri)
+    mp2 = Playlists(dbus_interface_info={'dbus_uri': uri})
     print mp2.ActivePlaylist
     print 'Active is valid playlist: ', bool(mp2.ActivePlaylist)
     if mp2.ActivePlaylist:
