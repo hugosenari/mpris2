@@ -5,7 +5,6 @@ This is mprisV2.1 documentation
 http://www.mpris.org/2.1/spec/index.html
 
 
-===========
 Version 2.1
 ===========
 Copyright © 2006-2010 the VideoLAN team(Mirsal Ennaime, Rafaël Carré, Jean-Paul Saman)
@@ -18,21 +17,21 @@ This library is distributed in the hope that it will be useful, but WITHOUT ANY 
 You should have received a copy of the GNU Lesser General Public License along with this library; if not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 
 
-=====
+
 About
 =====
 The Media Player Remote Interfacing Specification is a standard D-Bus interface which aims to provide a common programmatic API for controlling media players.
 It provides a mechanism for compliant media players discovery, basic playback and media player state control as well as a tracklist interface which is used to add context to the current item.
 
 
-=======
+
 Changes
 =======
 From 2.0 to 2.1:
     Added the optional org.mpris.MediaPlayer2.Playlists interface.
 
 
-===============
+
 Bus Name Policy
 ===============
 Each media player *must* request a unique bus name which begins with *org.mpris.MediaPlayer2*. For example:
@@ -44,7 +43,7 @@ This allows clients to list available media players (either already running or w
 In the case where the media player allows multiple instances running simultaneously, each additional instance should request a unique bus name, adding a dot and a unique identifier (such as a UNIX process id) to its usual bus name. For example, this could be
 * org.mpris.MediaPlayer2.vlc.7389
 
-===========
+
 Entry point
 ===========
 The media player *must* expose the */org/mpris/MediaPlayer2* object path, which *must* implement the following interfaces:
@@ -55,18 +54,18 @@ The media player *must* expose the */org/mpris/MediaPlayer2* object path, which 
 The */org/mpris/MediaPlayer2* object may implement the *org.mpris.MediaPlayer2.TrackList* interface.
 The */org/mpris/MediaPlayer2* object may implement the *org.mpris.MediaPlayer2.Playlists* interface.
 
-============================
+
 The PropertiesChanged signal
 ============================
 The MPRIS uses the org.freedesktop.DBus.Properties.PropertiesChanged signal to notify clients of changes in the media player state. If a client implementation uses D-Bus bindings which do not support this signal, then it should connect to it manually. If a media player implementation uses D-Bus bindings which do not support this signal, then it should send it manually
 
-===========
+
 Corrections
 ===========
 2010-09-26: Added EmitsChangedSignal annotation to Volume property on the Player interface.
 2011-01-26: Added PlaylistChanged signal to the Playlists interface.
 
-==========
+
 Interfaces
 ==========
 * org.mpris.MediaPlayer2

@@ -5,11 +5,12 @@ PLAYLIST = 'Playlist'
 class Loop_Status(str):
     '''
     A repeat / loop status
-    *None (None)
+    
+    * None (None)
         The playback will stop when there are no more tracks to play
-    *Track (Track)
+    * Track (Track)
         The current track will start again from the begining once it has finished playing
-    *Playlist (Playlist)
+    * Playlist (Playlist)
         The playback loops through a list of tracks
     '''
     VALUES = (NONE, TRACK, PLAYLIST)

@@ -11,6 +11,7 @@ from pydbusdecorator.dbus_signal import DbusSignal
 from mpris2.interfaces import Interfaces
 from mpris2.types import Time_In_Us, Loop_Status, Playback_Status, \
 Playback_Rate, Metadata_Map, Volume
+import imaplib
 
 @DbusInterface(Interfaces.PLAYER, Interfaces.OBJECT_PATH)
 class Player(Interfaces):

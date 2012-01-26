@@ -6,26 +6,33 @@ http://www.mpris.org/2.1/spec/index.html
 
 class Interfaces(object):
     """
-    This class contains the constants defined at index of MPRIS definition
+    This class contains the constants defined at index of MPRIS2 definition:
 
-    ==========
+    
     Interfaces
-    ==========
-    * MEDIA_PLAYER = 'org.mpris.MediaPlayer2'
-    * TRACK_LIST = 'org.mpris.MediaPlayer2.TrackList'
-    * PLAYER = 'org.mpris.MediaPlayer2.Player'
-    * PLAYLISTS = 'org.mpris.MediaPlayer2.Playlists'
-    * PROPERTIES = 'org.freedesktop.DBus.Properties'
+    ----------
+    MEDIA_PLAYER
+        'org.mpris.MediaPlayer2'
+    TRACK_LIST
+        'org.mpris.MediaPlayer2.TrackList'
+    PLAYER
+        'org.mpris.MediaPlayer2.Player'
+    PLAYLISTS
+        'org.mpris.MediaPlayer2.Playlists'
+    PROPERTIES
+        'org.freedesktop.DBus.Properties'
     
-    ======
+
     Signal
-    ======
-    * SIGNAL = 'PropertiesChanged'
+    ------
+    SIGNAL
+        'PropertiesChanged'
     
-    ======
+
     Object
-    ======
+    ------
     * OBJECT_PATH = '/org/mpris/MediaPlayer2'
+    
     """
     #interface
     MEDIA_PLAYER = 'org.mpris.MediaPlayer2'
@@ -37,3 +44,5 @@ class Interfaces(object):
     SIGNAL = 'PropertiesChanged'
     #Object
     OBJECT_PATH = '/org/mpris/MediaPlayer2'
+    
+    
