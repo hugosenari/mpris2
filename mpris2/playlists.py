@@ -13,7 +13,7 @@ from mpris2.types import Playlist, Maybe_Playlist
 from dbus import UInt32
 
 
-@DbusInterface(Interfaces.PLAYLISTS, Interfaces.OBJECT_PATH)
+
 class Playlists(Interfaces):
     '''
     Provides access to the media player's playlists.
@@ -21,6 +21,11 @@ class Playlists(Interfaces):
     Since D-Bus does not provide an easy way to check for what interfaces are exported on an object, clients should attempt to get one of the properties on this interface to see if it is implemented.
     
     '''
+    
+    @DbusInterface(Interfaces.PLAYLISTS, Interfaces.OBJECT_PATH)
+    def __init__(self):
+        '''Constructor'''
+        pass
     
     @DbusMethod
     def ActivatePlaylist(self, PlaylistId):

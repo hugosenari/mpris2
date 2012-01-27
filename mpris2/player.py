@@ -13,11 +13,16 @@ from mpris2.interfaces import Interfaces
 from mpris2.types import Time_In_Us, Loop_Status, Playback_Status, \
 Playback_Rate, Metadata_Map, Volume
 
-@DbusInterface(Interfaces.PLAYER, Interfaces.OBJECT_PATH)
+
 class Player(Interfaces):
     '''
     This interface implements the methods for querying and providing basic control over what is currently playing.
     '''
+    
+    @DbusInterface(Interfaces.PLAYER, Interfaces.OBJECT_PATH)
+    def __init__(self):
+        '''Constructor'''
+        pass
     
     @DbusMethod
     def Next(self):
@@ -124,7 +129,6 @@ class Player(Interfaces):
             The currently playing track's identifier.
 
             If this does not match the id of the currently-playing track, the call is ignored as "stale".
-
         * Position - x (Time_In_Us)
             Track position in microseconds.
 
@@ -200,6 +204,7 @@ class Player(Interfaces):
         
         Read only
             When this property changes, the org.freedesktop.DBus.Properties.PropertiesChanged signal is emitted with the new value.
+            
         The current playback status.
         
         May be "Playing", "Paused" or "Stopped".
@@ -304,7 +309,8 @@ class Player(Interfaces):
         
         The current track position in microseconds, between 0 and the 'mpris:length' metadata entry (see Metadata).
         
-        Note: If the media player allows it, the current playback position can be changed either the SetPosition method or the Seek method on this interface. If this is not the case, the CanSeek property is false, and setting this property has no effect and can raise an error.
+        .. note::
+            If the media player allows it, the current playback position can be changed either the SetPosition method or the Seek method on this interface. If this is not the case, the CanSeek property is false, and setting this property has no effect and can raise an error.
         
         If the playback progresses in a way that is inconstistant with the Rate property, the Seeked signal is emited.
         '''

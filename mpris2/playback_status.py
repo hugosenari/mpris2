@@ -12,6 +12,7 @@ class Playback_Status(str):
         A track is currently paused.
     * Stopped (Stopped)
         There is no track currently playing.
+        
     '''
     VALUES = (PLAYING, PAUSED, STOPPED)
     

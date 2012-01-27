@@ -7,6 +7,7 @@ SPHINXBUILD   = sphinx-build
 SPHINIXBUILDAPI = sphinx-apidoc
 PAPER         =
 BUILDDIR      = build
+INTALLCMD     = python setup.py
 
 # Internal variables.
 PAPEROPT_a4     = -D latex_paper_size=a4
@@ -16,10 +17,11 @@ ALLSPHINXAPIOPTS = -f -o docs mpris2
 # the i18n builder cannot share the environment and doctrees with the others
 I18NSPHINXOPTS  = $(PAPEROPT_$(PAPER)) $(SPHINXOPTS) docs
 
-.PHONY: help clean html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest gettext
+.PHONY: help clean install html dirhtml singlehtml pickle json htmlhelp qthelp devhelp epub latex latexpdf text man changes linkcheck doctest gettext
 
 help:
 	@echo "Please use \`make <target>' where <target> is one of"
+	@echo "  install    to make install"
 	@echo "  html       to make standalone HTML files"
 	@echo "  dirhtml    to make HTML files named index.html in directories"
 	@echo "  singlehtml to make a single large HTML file"
@@ -42,6 +44,10 @@ help:
 
 clean:
 	-rm -rf $(BUILDDIR)/*
+
+install:
+	$(INTALLCMD) install
+	@echo "Install done"
 
 html:
 	@echo "Bulding doc from code..."

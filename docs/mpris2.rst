@@ -137,6 +137,14 @@ mpris2 Package
     :undoc-members:
     :show-inheritance:
 
+:mod:`utils` Module
+-------------------
+
+.. automodule:: mpris2.utils
+    :members:
+    :undoc-members:
+    :show-inheritance:
+
 :mod:`volume` Module
 --------------------
 

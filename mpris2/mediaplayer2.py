@@ -13,7 +13,6 @@ from pydbusdecorator.dbus_signal import DbusSignal
 from mpris2.interfaces import Interfaces
 
 
-@DbusInterface(Interfaces.MEDIA_PLAYER, Interfaces.OBJECT_PATH)
 class MediaPlayer2(Interfaces):
     '''
     Interface for MediaPlayer2 (org.mpris.MediaPlayer2)
@@ -27,6 +26,11 @@ class MediaPlayer2(Interfaces):
     PROPERTIES_SUPPORTED_MINE_TYPES = 'SupportedMimeTypes'
     SIGNALS_PROPERTIES_CHANGED = 'PropertiesChanged'
     
+    @DbusInterface(Interfaces.MEDIA_PLAYER, Interfaces.OBJECT_PATH)
+    def __init__(self):
+        '''Constructor'''
+        pass
+    
     @DbusMethod
     def Raise(self):
         """
@@ -34,7 +38,7 @@ class MediaPlayer2(Interfaces):
         
         The media player may be unable to control how its user interface is displayed, or it may not have a graphical user interface at all. In this case, the CanRaise property is false and this method does nothing.
         """
-        pass
+        return None
     
     @DbusMethod
     def Quit(self):
@@ -43,7 +47,8 @@ class MediaPlayer2(Interfaces):
         
         The media player may refuse to allow clients to shut it down. In this case, the CanQuit property is false and this method does nothing.
         
-        Note: Media players which can be D-Bus activated, or for which there is no sensibly easy way to terminate a running instance (via the main interface or a notification area icon for example) should allow clients to use this method. Otherwise, it should not be needed.
+        ..note::
+            Media players which can be D-Bus activated, or for which there is no sensibly easy way to terminate a running instance (via the main interface or a notification area icon for example) should allow clients to use this method. Otherwise, it should not be needed.
         
         If the media player does not have a UI, this should be implemented
         """
@@ -133,7 +138,7 @@ class MediaPlayer2(Interfaces):
 
         Note that URI schemes should be lower-case.
 
-        note::
+        .. note::
             This is important for clients to know when using the editing capabilities of the Playlist interface, for example.
         """
         pass
@@ -150,7 +155,7 @@ class MediaPlayer2(Interfaces):
 
         Mime-types should be in the standard format (eg: audio/mpeg or application/ogg).
 
-        note::
+        .. note::
             This is important for clients to know when using the editing capabilities of the Playlist interface, for example.
         """
         pass

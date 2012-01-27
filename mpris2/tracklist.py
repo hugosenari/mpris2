@@ -10,7 +10,7 @@ from pydbusdecorator.dbus_signal import DbusSignal
 from mpris2.interfaces import Interfaces
 from mpris2.types import Metadata_Map
 
-@DbusInterface(Interfaces.TRACK_LIST, Interfaces.OBJECT_PATH)
+
 class TrackList(Interfaces):
     '''
     Interface for TrackList (org.mpris.MediaPlayer2.TrackList)
@@ -32,6 +32,12 @@ class TrackList(Interfaces):
     SIGNALS_TRACK_REMOVED = 'TrackRemoved'
     SIGNALS_TRACK_METADATA_CHANGED = 'TrackMetadataChanged'
     SIGNALS_PROPERTIES_CHANGED = 'PropertiesChanged'
+
+
+    @DbusInterface(Interfaces.TRACK_LIST, Interfaces.OBJECT_PATH)
+    def __init__(self):
+        '''Constructor'''
+        pass
     
     @DbusMethod(produces=lambda map_list:\
                 [Metadata_Map(metadata_map) for metadata_map in map_list])
@@ -72,16 +78,17 @@ class TrackList(Interfaces):
         
         If the CanEditTracks property is false, this has no effect.
         
-        Note: Clients should not assume that the track has been added at the time when this method returns. They should wait for a TrackAdded (or TrackListReplaced) signal.
+        .. note::
+            Clients should not assume that the track has been added at the time when this method returns. They should wait for a TrackAdded (or TrackListReplaced) signal.
         '''
         pass
     
     @DbusMethod
     def RemoveTrack(self, TrackId):
         '''
-        ==========
-        Parameters
-        ==========
+        
+        **Parameters:**
+        
         * TrackId - o (TrackId)
             Identifier of the track to be removed.
         
@@ -91,30 +98,31 @@ class TrackList(Interfaces):
         
         If the CanEditTracks property is false, this has no effect.
         
-        Note: Clients should not assume that the track has been removed at the time when this method returns. They should wait for a TrackRemoved (or TrackListReplaced) signal.
+        .. note::
+            Clients should not assume that the track has been removed at the time when this method returns. They should wait for a TrackRemoved (or TrackListReplaced) signal.
         '''
         pass
     
     @DbusMethod
     def GoTo(self, TrackId):
         '''
-        ==========    
-        Parameters
-        ==========
+        **Parameters:**
+        
         * TrackId - o (Track_Id)
             Identifier of the track to skip to.
         
         Skip to the specified TrackId.
+        
         If the track is not part of this tracklist, this has no effect.
+        
         If this object is not /org/mpris/MediaPlayer2, the current TrackList's tracks should be replaced with the contents of this TrackList, and the TrackListReplaced signal should be fired from /org/mpris/MediaPlayer2.
         '''
     
     @DbusSignal
     def TrackListReplaced(self, Tracks, CurrentTrack):
         '''
-        ==========
-        Parameters
-        ==========
+        **Parameters:**
+        
         * Tracks - ao (Track_Id_List)
             The new content of the tracklist.
         * CurrentTrack - o (Track_Id)
@@ -129,8 +137,8 @@ class TrackList(Interfaces):
     @DbusSignal
     def TrackAdded(self, Metadata, AfterTrack=''):
         '''
-        Parameters
-        ==========
+        **Parameters:**
+        
         * Metadata - a{sv} (Metadata_Map)
             The metadata of the newly added item.
             
@@ -147,8 +155,8 @@ class TrackList(Interfaces):
     @DbusSignal
     def TrackRemoved(self, TrackId):
         '''
-        Parameters
-        ==========
+        **Parameters:**
+        
         * TrackId - o (Track_Id)
             The identifier of the track being removed.
 
@@ -159,8 +167,8 @@ class TrackList(Interfaces):
     @DbusSignal
     def TrackMetadataChanged(self, TrackId, Metadata):
         '''
-        Parameters
-        ==========
+        **Parameters:**
+        
         * TrackId - o (Track_Id)
             The id of the track which metadata has changed.
         * Metadata - a{sv} (Metadata_Map)
@@ -179,8 +187,8 @@ class TrackList(Interfaces):
     @DbusAttr
     def Tracks(self):
         '''
-        Returns
-        =======
+        **Returns:**
+        
         Read only
             When this property changes, the org.freedesktop.DBus.Properties.PropertiesChanged signal is emitted, but the new value is not sent.
         
@@ -193,8 +201,8 @@ class TrackList(Interfaces):
     @DbusAttr
     def CanEditTracks(self):
         '''
-        Returns
-        =======
+        **Returns:**
+        
         Read only
             When this property changes, the org.freedesktop.DBus.Properties.PropertiesChanged signal is emitted with the new value.
 
