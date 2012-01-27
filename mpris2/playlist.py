@@ -2,13 +2,16 @@ from dbus import Struct
 class Playlist(Struct):
     '''
     A data structure describing a playlist.
-    *Id - o (Playlist_Id)
+    
+    * Id - o (Playlist_Id)
         A unique identifier for the playlist.
+        
         This should remain the same if the playlist is renamed.
-    *Name - s
+    * Name - s
         The name of the playlist, typically given by the user.
-    *Icon - s (Uri)
+    * Icon - s (Uri)
         The URI of an (optional) icon.
+        
     '''
     def __init__(self, playlist):
         Struct.__init__(
@@ -32,10 +35,11 @@ class Playlist(Struct):
 
 class Maybe_Playlist(Struct):
     '''
-    *Valid - b
+    * Valid - b
         Whether this structure refers to a valid playlist.
-    *Playlist - (oss) (Playlist)
+    * Playlist - (oss) (Playlist)
         The playlist, providing Valid is true, otherwise undefined.
+        
     When constructing this type, it should be noted that the playlist ID must be a valid object path, or D-Bus implementations may reject it. This is true even when Valid is false. It is suggested that "/" is used as the playlist ID in this case.
     '''
     

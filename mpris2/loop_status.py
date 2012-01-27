@@ -4,6 +4,7 @@ PLAYLIST = 'Playlist'
 
 class Loop_Status(str):
     '''
+    
     A repeat / loop status
     
     * None (None)

@@ -1,6 +1,7 @@
 class Playback_Rate(float):
     '''
     A playback rate
+    
     This is a multiplier,
     so a value of 0.5 indicates that playback is happening at half speed,
     while 1.5 means that 1.5 seconds of "track time" is consumed every second.

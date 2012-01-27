@@ -1,13 +1,18 @@
 class Metadata_Map(dict):
     '''
     A mapping from metadata attribute names to values.
+    
     The mpris:trackid attribute must always be present. This contains a string that uniquely identifies the track within the scope of the playlist.
+    
     If the length of the track is known, it should be provided in the metadata property with the "mpris:length" key. The length must be given in microseconds, and be represented as a signed 64-bit integer.
+    
     If there is an image associated with the track, a URL for it may be provided using the "mpris:artUrl" key. For other metadata, fields defined by the Xesam ontology should be used, prefixed by "xesam:". See http://wiki.xmms2.xmms.se/wiki/MPRIS_Metadata for a list of common fields.
+    
     Lists of strings should be passed using the array-of-string ("as") D-Bus type. Dates should be passed as strings using the ISO 8601 extended format (eg: 2007-04-29T14:35:51). If the timezone is known, RFC 3339's internet profile should be used (eg: 2007-04-29T14:35:51+02:00).
-    *Attribute - s
+    
+    * Attribute - s
         The name of the attribute; see http://wiki.xmms2.xmms.se/wiki/MPRIS_Metadata for guidelines on names to use.
-    *Value - v
+    * Value - v
         The value of the attribute, in the most appropriate format.
     '''
     ART_URI = 'mpris:artUrl'

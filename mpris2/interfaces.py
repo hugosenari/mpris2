@@ -1,6 +1,7 @@
 # -*- coding: UTF8 -*
 """
 This is mprisV2.1 documentation
+
 http://www.mpris.org/2.1/spec/index.html
 """
 
@@ -9,29 +10,30 @@ class Interfaces(object):
     This class contains the constants defined at index of MPRIS2 definition:
 
     
-    Interfaces
-    ----------
-    MEDIA_PLAYER
+    **Interfaces:**
+    
+    * MEDIA_PLAYER
         'org.mpris.MediaPlayer2'
-    TRACK_LIST
+    * TRACK_LIST
         'org.mpris.MediaPlayer2.TrackList'
-    PLAYER
+    * PLAYER
         'org.mpris.MediaPlayer2.Player'
-    PLAYLISTS
+    * PLAYLISTS
         'org.mpris.MediaPlayer2.Playlists'
-    PROPERTIES
+    * PROPERTIES
         'org.freedesktop.DBus.Properties'
     
 
-    Signal
-    ------
-    SIGNAL
+    **Signals:**
+    
+    * SIGNAL
         'PropertiesChanged'
     
 
-    Object
-    ------
-    * OBJECT_PATH = '/org/mpris/MediaPlayer2'
+    **Objects:**
+    
+    * OBJECT_PATH
+        '/org/mpris/MediaPlayer2'
     
     """
     #interface

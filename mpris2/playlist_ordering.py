@@ -15,15 +15,15 @@ class Playlist_Ordering(str):
     '''
     Specifies the ordering of returned playlists.
 
-    *Alphabetical (Alphabetical)
+    * Alphabetical (Alphabetical)
         Alphabetical ordering by name, ascending.
-    *CreationDate (Created)
+    * CreationDate (Created)
         Ordering by creation date, oldest first.
-    *ModifiedDate (Modified)
+    * ModifiedDate (Modified)
         Ordering by last modified date, oldest first.
-    *LastPlayDate (Played)
+    * LastPlayDate (Played)
         Ordering by date of last playback, oldest first.
-    *UserDefined (User)
+    * UserDefined (User)
         A user-defined ordering.
     '''
     

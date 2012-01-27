@@ -5,11 +5,12 @@ STOPPED = 'Stopped'
 class Playback_Status(str):
     '''
     A playback state.
-    *Playing (Playing)
+    
+    * Playing (Playing)
         A track is currently playing.
-    *Paused (Paused)
+    * Paused (Paused)
         A track is currently paused.
-    *Stopped (Stopped)
+    * Stopped (Stopped)
         There is no track currently playing.
     '''
     VALUES = (PLAYING, PAUSED, STOPPED)

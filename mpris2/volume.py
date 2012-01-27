@@ -4,8 +4,10 @@ Audio Volume
 class Volume(float):
     '''
     Audio volume level
-    *0.0 means mute.
-    *1.0 is a sensible maximum volume level (ex: 0dB).
+    
+    * 0.0 means mute.
+    * 1.0 is a sensible maximum volume level (ex: 0dB).
+    
     Note that the volume may be higher than 1.0, although generally clients should not attempt to set it above 1.0.
     '''
 
