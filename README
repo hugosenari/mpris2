@@ -23,9 +23,9 @@ Connect to player
 
 >>> from mpris2.player.Player
 >>> 
->>> from mpris2.some_players import Some_PLayers
+>>> from mpris2.some_players import Some_Players
 >>> 
->>> uri = Interfaces.MEDIA_PLAYER + '.' + Some_PLayers.GMUSICBROWSER
+>>> uri = Interfaces.MEDIA_PLAYER + '.' + Some_Players.GMUSICBROWSER
 >>> 
 >>> # uri = 'org.mpris.MediaPlayer2.gmusicbrowser'
 >>> 
