@@ -37,11 +37,11 @@ class Metadata_Map(dict):
     URL = 'xesam:url'
     USE_COUNT = 'xesam:useCount'
     USER_RATING = 'xesam:userRating'
-    
+
     def __init__(self, metadata, *args, **kw):
         self._metadata = metadata
-        super(Metadata_Map, self).__init__(metadata,*args, **kw)
-        
+        super(Metadata_Map, self).__init__(metadata, *args, **kw)
+
     @property
     def metadata(self):
         return self._metadata
