@@ -6,8 +6,8 @@ Created on Nov 6, 2011
 '''
 
 import dbus, re
-from mpris2.some_players import Some_Players as SomePlayers
-from mpris2.interfaces import Interfaces
+from .some_players import Some_Players as SomePlayers
+from .interfaces import Interfaces
 
 def _match_players_uri(name, pattern='.+'):
     '''
@@ -42,7 +42,6 @@ def get_player_id_from_uri(uri):
         @param uri: string mpris2 player dbus uri
         @return: string mrpis2 id
     """
-    print uri
     mateched = re.match(Interfaces.MEDIA_PLAYER + '\.(.+)', uri or '')
     return mateched.groups()[0]\
         if mateched\
@@ -73,6 +72,6 @@ def unix_path_to_uri():
     pass
 
 if __name__ == '__main__':
-    print get_players_uri()
-    print SomePlayers.get_dict()
-    print get_player_id_from_uri('org.mpris.MediaPlayer2.banshee')
+    print(get_players_uri())
+    print(SomePlayers.get_dict())
+    print(get_player_id_from_uri('org.mpris.MediaPlayer2.banshee'))
