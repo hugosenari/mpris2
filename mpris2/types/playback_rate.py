@@ -8,13 +8,14 @@ class Playback_Rate(float):
     '''
     def __init__(self, rate=1.0):
         self._rate = rate
-        super(Playback_Rate, self).__init__(rate)
-        
-    @property
-    def rate(self):
+    
+    def __float__(self):
         return self._rate
+    
+    def __str__(self):
+        return str(self._rate)
 
     
 if __name__ == "__main__":
-    pr = Playback_Rate(12)
-    print pr == '12'
+    pr = Playback_Rate(1.2)
+    assert pr == 1.2

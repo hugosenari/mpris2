@@ -3,12 +3,12 @@ This is python mprisV2.1 documentation
 
 http://www.mpris.org/2.1/spec/TrackList_Node.html
 """
-from pydbusdecorator.dbus_attr import DbusAttr
-from pydbusdecorator.dbus_interface import DbusInterface
-from pydbusdecorator.dbus_method import DbusMethod
-from pydbusdecorator.dbus_signal import DbusSignal
-from mpris2.interfaces import Interfaces
-from mpris2.types import Metadata_Map
+from .decorator import DbusAttr
+from .decorator import DbusInterface
+from .decorator import DbusMethod
+from .decorator import DbusSignal
+from .interfaces import Interfaces
+from .types import Metadata_Map
 
 
 class TrackList(Interfaces):
@@ -214,4 +214,4 @@ if __name__ == '__main__':
     from mpris2.utils import SomePlayers
     uri = Interfaces.MEDIA_PLAYER + '.' + SomePlayers.GMUSICBROWSER
     mp2 = TrackList(dbus_interface_info={'dbus_uri': uri}) #some one know any player that support it?
-    print mp2
+    print( mp2 )

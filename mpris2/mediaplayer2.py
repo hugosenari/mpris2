@@ -5,12 +5,12 @@ http://www.mpris.org/2.1/spec/Root_Node.html
 """
 
 
-from pydbusdecorator.dbus_attr import DbusAttr
-from pydbusdecorator.dbus_interface import DbusInterface
-from pydbusdecorator.dbus_method import DbusMethod
-from pydbusdecorator.dbus_signal import DbusSignal
+from .decorator import DbusAttr
+from .decorator import DbusInterface
+from .decorator import DbusMethod
+from .decorator import DbusSignal
 
-from mpris2.interfaces import Interfaces
+from .interfaces import Interfaces
 
 
 class MediaPlayer2(Interfaces):
@@ -174,11 +174,12 @@ class MediaPlayer2(Interfaces):
         """
         pass
 
+
 if __name__ == '__main__':
     from mpris2.utils import SomePlayers
     uri = Interfaces.MEDIA_PLAYER + '.' + SomePlayers.GMUSICBROWSER
     mp2 = MediaPlayer2(dbus_interface_info={'dbus_uri': uri})
-    print mp2.SupportedUriSchemes
+    print(mp2.SupportedUriSchemes)
 #    
 #    
 #    from dbus.mainloop.glib import DBusGMainLoop

@@ -38,14 +38,9 @@ class Metadata_Map(dict):
     USE_COUNT = 'xesam:useCount'
     USER_RATING = 'xesam:userRating'
 
-    def __init__(self, metadata, *args, **kw):
-        self._metadata = metadata
-        super(Metadata_Map, self).__init__(metadata, *args, **kw)
-
-    @property
-    def metadata(self):
-        return self._metadata
+    def __init__(self, metadata):
+        super(Metadata_Map, self).__init__(**metadata)
 
 if __name__ == "__main__":
     mdm = Metadata_Map({Metadata_Map.ALBUM : "Marcelo Nova Ao Vivo"})
-    print mdm[Metadata_Map.ALBUM]
+    assert mdm[Metadata_Map.ALBUM] == "Marcelo Nova Ao Vivo"

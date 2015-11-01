@@ -1,6 +1,3 @@
-'''
-Audio Volume
-'''
 class Volume(float):
     '''
     Audio volume level
@@ -15,14 +12,21 @@ class Volume(float):
     MAX = 1.0
     RANGE = set([n/10.0 for n in range(11)])
     
-    def __init__(self, volume=1.0, *args, **kw):
-        super(Volume, self).__init__(volume, *args, **kw)
-        self._volume = volume
-        
-    @property
-    def volume(self):
-        '''Get volume atrribute'''
-        return self._volume
+    def __init__(self, volume=1.0):
+        assert volume <= 1
+        self._volume = float(volume)
     
+    def __float__(self):
+        return self._time
+    
+    def __str__(self):
+        return str(self._time)
+
+
 if __name__ == "__main__":
-    print Volume(1)
+    assert Volume(1) == 1
+    assert Volume(0.1) == 0.1
+    assert Volume(1) == 1.0
+    assert Volume(1.0) == 1
+    assert Volume(0.1) != 1.2
+    

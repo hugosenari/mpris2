@@ -46,5 +46,3 @@ class Interfaces(object):
     SIGNAL = 'PropertiesChanged'
     #Object
     OBJECT_PATH = '/org/mpris/MediaPlayer2'
-    
-    

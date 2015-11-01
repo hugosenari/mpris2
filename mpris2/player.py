@@ -4,13 +4,13 @@ This is python mprisV2.1 documentation
 http://www.mpris.org/2.1/spec/Player_Node.html
 '''
 
-from pydbusdecorator.dbus_attr import DbusAttr
-from pydbusdecorator.dbus_interface import DbusInterface
-from pydbusdecorator.dbus_method import DbusMethod
-from pydbusdecorator.dbus_signal import DbusSignal
+from .decorator import DbusAttr
+from .decorator import DbusInterface
+from .decorator import DbusMethod
+from .decorator import DbusSignal
 
-from mpris2.interfaces import Interfaces
-from mpris2.types import Time_In_Us, Loop_Status, Playback_Status, \
+from .interfaces import Interfaces
+from .types import Time_In_Us, Loop_Status, Playback_Status, \
 Playback_Rate, Metadata_Map, Volume
 
 
@@ -437,7 +437,7 @@ class Player(Interfaces):
         pass
     
 if __name__ == '__main__':
-    from mpris2.utils import SomePlayers
+    #from mpris2.utils import SomePlayers
     #uri = Interfaces.MEDIA_PLAYER + '.' + SomePlayers.GMUSICBROWSER
     #mp2 = Player(dbus_interface_info={'dbus_uri': uri})
     #print mp2.LoopStatus
@@ -449,11 +449,11 @@ if __name__ == '__main__':
     import gobject
     
     def my_handler(self, Position):
-        print 'handled', Position, type(Position)
-        print 'self handled', self.last_fn_return, type(self.last_fn_return)
+        print( 'handled', Position, type(Position) )
+        print( 'self handled', self.last_fn_return, type(self.last_fn_return) )
     
-    def another_handler(self, *args, **kw): 
-        print args, kw
+    def another_handler(self, *args, **kw):
+        print( args, kw )
 
     mloop = gobject.MainLoop()
     #print mp2.Seeked
