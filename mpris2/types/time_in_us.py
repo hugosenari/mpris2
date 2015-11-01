@@ -1,3 +1,9 @@
+"""
+From mprisV2.2 documentation
+
+http://specifications.freedesktop.org/mpris-spec/latest/Player_Interface.html#Simple-Type:Time_In_Us
+"""
+
 class Time_In_Us(int):
     '''Time in microseconds.'''
     

@@ -1,3 +1,9 @@
+"""
+From mprisV2.2 documentation
+
+http://specifications.freedesktop.org/mpris-spec/latest/Player_Interface.html#Simple-Type:Playback_Rate
+"""
+
 class Playback_Rate(float):
     '''
     A playback rate

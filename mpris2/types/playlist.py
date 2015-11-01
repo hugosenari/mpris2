@@ -1,3 +1,9 @@
+"""
+From mprisV2.2 documentation
+
+http://specifications.freedesktop.org/mpris-spec/2.2/Playlists_Interface.html#Struct:Playlist
+"""
+
 from dbus import Struct
 
 

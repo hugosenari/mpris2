@@ -1,3 +1,9 @@
+"""
+From mprisV2.2 documentation
+
+http://specifications.freedesktop.org/mpris-spec/latest/Player_Interface.html#Enum:Playback_Status
+"""
+
 class Playback_Status(str):
     '''
     A playback state.

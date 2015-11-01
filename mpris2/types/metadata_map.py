@@ -1,3 +1,10 @@
+"""
+From mprisV2.2 documentation
+
+http://specifications.freedesktop.org/mpris-spec/latest/Track_List_Interface.html#Mapping:Metadata_Map
+http://www.freedesktop.org/wiki/Specifications/mpris-spec/metadata/
+"""
+
 class Metadata_Map(dict):
     '''
     A mapping from metadata attribute names to values.

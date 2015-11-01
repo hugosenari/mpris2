@@ -1,3 +1,9 @@
+"""
+From mprisV2.2 documentation
+
+http://specifications.freedesktop.org/mpris-spec/latest/Player_Interface.html#Enum:Loop_Status
+"""
+
 class Loop_Status(str):
     '''
     A repeat / loop status

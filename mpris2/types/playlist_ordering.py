@@ -1,3 +1,9 @@
+"""
+From mprisV2.2 documentation
+
+http://specifications.freedesktop.org/mpris-spec/2.2/Playlists_Interface.html#Enum:Playlist_Ordering
+"""
+
 class Playlist_Ordering(str):
     '''
     Specifies the ordering of returned playlists.

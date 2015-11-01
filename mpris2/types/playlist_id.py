@@ -1,3 +1,9 @@
+"""
+From mprisV2.2 documentation
+
+http://specifications.freedesktop.org/mpris-spec/2.2/Playlists_Interface.html#Simple-Type:Playlist_Id
+"""
+
 class Playlist_Id(str):
     '''
     Unique playlist identifier.
