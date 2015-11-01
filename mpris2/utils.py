@@ -12,7 +12,7 @@ def _match_players_uri(name, pattern='.+'):
     '''
         Filter logic for get_players and get_player_uri
         @param name: string name to test
-        @param pattern=None:  string regexp to test
+        @param pattern=None:  string RegEx to test
         @return: boolean
     '''
     return \
@@ -28,7 +28,7 @@ def get_session():
 def get_players_uri(pattern='.'):
     """
         Return string of player bus name
-        @param pattern=None: string regex that filter response
+        @param pattern=None: string RegEx that filter response
         @return: array string of players bus name
     """
     return [item
@@ -49,7 +49,7 @@ def get_player_id_from_uri(uri):
 def get_players_id(pattern=None):
     """
         Return string of player mpris2 id
-        @param pattern=None: string regex that filter response
+        @param pattern=None: string RegEx that filter response
         @return: array string of players bus name
     """
     for item in get_session().list_names():
