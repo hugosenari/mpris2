@@ -6,7 +6,6 @@ Created on Nov 6, 2011
 '''
 
 import dbus, re
-from .some_players import Some_Players as SomePlayers
 from .interfaces import Interfaces
 
 def _match_players_uri(name, pattern='.+'):
@@ -56,22 +55,7 @@ def get_players_id(pattern=None):
     for item in get_session().list_names():
         if _match_players_uri(item, pattern):
             yield get_player_id_from_uri(item)
-    
-def get_intances_of(what_to_instantiate, pattern):
-    """
-        Return new instance of what_to_instantiate
-        @param what_to_instantiate: class or function with dbus_uri only param
-        @param pattern=None: string regexo that filter response
-        @return: array string of players bus name
-    """
-    return [what_to_instantiate(dbus_uri=item)
-        for item in get_session().list_names()
-            if _match_players_uri(item, pattern)]
-    
-def unix_path_to_uri():
-    pass
 
 if __name__ == '__main__':
-    print(get_players_uri())
-    print(SomePlayers.get_dict())
-    print(get_player_id_from_uri('org.mpris.MediaPlayer2.banshee'))
+    print('Running players:', get_players_uri())
+    assert get_player_id_from_uri('org.mpris.MediaPlayer2.banshee') == 'banshee'
