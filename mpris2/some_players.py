@@ -47,7 +47,6 @@ class Some_Players(object):
     * XNOISE
         "xnoise"
     '''
-    #Some players
     AUDACIOUS = "audacious"
     BANSHEE = "banshee"
     BEATBOX = "beatbox"
@@ -76,3 +75,7 @@ class Some_Players(object):
             if key[0] not in ('_', 'g'):
                 result[key] = getattr(Some_Players, key)
         return result
+
+
+if __name__ == '__main__':
+    print('Well know players:', Some_Players.get_dict().values())
