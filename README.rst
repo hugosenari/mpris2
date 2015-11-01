@@ -2,14 +2,15 @@
 Python usable definiton of MPRIS2
 ====================================
 
-This is my lib to help developers work with Mpris2 and python
+This is my lib to help developers work with MPRIS2 and python
 
-See Mpris2 site (http://www.mpris.org/2.1/spec/)
+See Mpris2 site (http://specifications.freedesktop.org/mpris-spec/2.2/)
 
-Require:
+See also:
 ========
 
-Python dbus and pydbusdecorator (https://github.com/hugosenari/pydbusdecorator)
+pympris (https://github.com/wistful/pympris)
+
 
 Example:
 ========
