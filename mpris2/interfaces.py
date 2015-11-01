@@ -1,8 +1,7 @@
-# -*- coding: UTF8 -*
 """
-This is mprisV2.1 documentation
+From mprisV2.2 documentation
 
-http://www.mpris.org/2.1/spec/index.html
+http://specifications.freedesktop.org/mpris-spec/2.2/#Interfaces
 """
 
 class Interfaces(object):
