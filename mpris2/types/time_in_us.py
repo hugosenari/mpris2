@@ -1,8 +1,9 @@
-"""
+'''
 From mprisV2.2 documentation
 
 http://specifications.freedesktop.org/mpris-spec/latest/Player_Interface.html#Simple-Type:Time_In_Us
-"""
+'''
+
 
 class Time_In_Us(int):
     '''Time in microseconds.'''
@@ -17,5 +18,5 @@ class Time_In_Us(int):
         return str(self._time)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     assert Time_In_Us(10) == 10

@@ -1,11 +1,12 @@
-"""
+'''
 From mprisV2.2 documentation
 
 http://specifications.freedesktop.org/mpris-spec/2.2/#Interfaces
-"""
+'''
+
 
 class Interfaces(object):
-    """
+    '''
     This class contains the constants defined at index of MPRIS2 definition:
 
     
@@ -34,7 +35,7 @@ class Interfaces(object):
     * OBJECT_PATH
         '/org/mpris/MediaPlayer2'
     
-    """
+    '''
     #interface
     MEDIA_PLAYER = 'org.mpris.MediaPlayer2'
     TRACK_LIST = 'org.mpris.MediaPlayer2.TrackList'

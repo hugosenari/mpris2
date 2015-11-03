@@ -1,8 +1,9 @@
-"""
+'''
 From mprisV2.2 documentation
 
 http://specifications.freedesktop.org/mpris-spec/2.2/Playlists_Interface.html#Simple-Type:Playlist_Id
-"""
+'''
+
 
 class Playlist_Id(str):
     '''
@@ -16,6 +17,6 @@ class Playlist_Id(str):
         return self._status
 
 
-if __name__ == "__main__":
-    pid = Playlist_Id("id of a playlist")
-    assert pid == "id of a playlist"
+if __name__ == '__main__':
+    pid = Playlist_Id('id of a playlist')
+    assert pid == 'id of a playlist'

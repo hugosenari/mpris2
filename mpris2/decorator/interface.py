@@ -1,7 +1,14 @@
+'''
+This is not part of specification
+
+Helper class to make it work as python lib
+'''
+
 import dbus
 from functools import wraps
 from .base import Decorator
-    
+
+
 class DbusInterface(Decorator):
 
     def __init__(self, iface=None, path=None, 
@@ -37,7 +44,7 @@ class DbusInterface(Decorator):
                                                 dbus_interface=self.iface)
             if not self.properties:
                 self.properties = dbus.Interface(self.object,
-                    "org.freedesktop.DBus.Properties")
+                    'org.freedesktop.DBus.Properties')
             return self.dbusWrapedInterface(*args, **kw)
         
         return dbusWrapedInterface

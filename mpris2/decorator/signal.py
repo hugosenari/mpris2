@@ -2,9 +2,9 @@ from .base import Decorator
 
 
 class DbusSignal(Decorator):
-    """
+    '''
     https://docs.python.org/2/howto/descriptor.html#properties
-    """
+    '''
 
     def __init__(self, meth=None, iface=None):
         self.attr = meth

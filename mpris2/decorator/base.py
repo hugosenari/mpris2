@@ -1,6 +1,9 @@
-class Decorator(object):    
-    def __init__(self, *args, **kwds):
-        pass
+'''
+This is not part of specification
 
-    def __call__(self, arg):
-        return arg
+Helper class to make it work as python lib
+'''
+
+
+class Decorator(object):
+    pass

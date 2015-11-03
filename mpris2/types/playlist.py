@@ -1,8 +1,8 @@
-"""
+'''
 From mprisV2.2 documentation
 
 http://specifications.freedesktop.org/mpris-spec/2.2/Playlists_Interface.html#Struct:Playlist
-"""
+'''
 
 from dbus import Struct
 
@@ -51,7 +51,7 @@ class Maybe_Playlist(Struct):
         
     When constructing this type, it should be noted that the playlist ID must 
     be a valid object path, or D-Bus implementations may reject it. This is
-    true even when Valid is false. It is suggested that "/" is used as the
+    true even when Valid is false. It is suggested that '/' is used as the
     playlist ID in this case.
     '''
     
@@ -78,7 +78,7 @@ class Maybe_Playlist(Struct):
         return self.__nonzero__()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     expect = Struct((1, 'My Playlist', None), signature='iss')
     p = Playlist(expect)
     assert p.Id == 1

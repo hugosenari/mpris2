@@ -1,8 +1,9 @@
-"""
+'''
 From mprisV2.2 documentation
 
 http://specifications.freedesktop.org/mpris-spec/2.2/Playlists_Interface.html#Enum:Playlist_Ordering
-"""
+'''
+
 
 class Playlist_Ordering(str):
     '''
@@ -19,6 +20,7 @@ class Playlist_Ordering(str):
     * UserDefined (User)
         A user-defined ordering.
     '''
+
     ALPHABETICAL = 'Alphabetical'
     CREATION_DATE = 'CreationDate'
     MODIFIED_DATE = 'ModifiedDate'
@@ -33,7 +35,7 @@ class Playlist_Ordering(str):
         return self._status
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     po = Playlist_Ordering('Alphabetical')
     assert po == 'Alphabetical'
     assert po == Playlist_Ordering.ALPHABETICAL

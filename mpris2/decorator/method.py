@@ -1,8 +1,8 @@
-"""
+'''
 This is not part of specification
 
 Helper class to make it work as python lib
-"""
+'''
 
 from .base import Decorator
 
@@ -98,4 +98,4 @@ if __name__ == '__main__':
             'dbus_uri': 'org.freedesktop.DBus'})
         
     assert d.GetId()
-    assert d.GetNameOwner("org.freedesktop.DBus") == 'org.freedesktop.DBus'
+    assert d.GetNameOwner('org.freedesktop.DBus') == 'org.freedesktop.DBus'

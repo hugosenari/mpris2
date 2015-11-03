@@ -1,13 +1,13 @@
-"""
+'''
 From mprisV2.2 documentation
 
 http://specifications.freedesktop.org/mpris-spec/2.2/Track_List_Interface.html
-"""
+'''
 
 from .decorator import DbusAttr
-from .decorator import DbusInterface
 from .decorator import DbusMethod
 from .decorator import DbusSignal
+from .decorator import DbusInterface
 from .interfaces import Interfaces
 from .types import Metadata_Map
 
@@ -52,11 +52,9 @@ class TrackList(Interfaces):
     SIGNALS_TRACK_METADATA_CHANGED = 'TrackMetadataChanged'
     SIGNALS_PROPERTIES_CHANGED = 'PropertiesChanged'
 
-
     @DbusInterface(Interfaces.TRACK_LIST, Interfaces.OBJECT_PATH)
     def __init__(self):
         '''Constructor'''
-        pass
     
     @DbusMethod(produces=lambda map_list:\
                 [Metadata_Map(metadata_map) for metadata_map in map_list])
@@ -76,13 +74,13 @@ class TrackList(Interfaces):
         
         Gets all the metadata available for a set of tracks.
         
-        Each set of metadata must have a "mpris:trackid" entry at the very
+        Each set of metadata must have a 'mpris:trackid' entry at the very
         least, which contains a string that uniquely identifies this track
         within the scope of the tracklist.
         '''
         pass
     
-    @DbusMethod
+    @DbusMethod()
     def AddTrack(self, Uri, AfterTrack='', SetAsCurrent=False):
         '''
 
@@ -256,10 +254,18 @@ class TrackList(Interfaces):
         raise a NotSupported error.
         '''
         pass
-    
+
+
 if __name__ == '__main__':
-    from .utils import get_players_uri
-    uri = get_players_uri()[0]
-    # some one know any player that support it?
-    mp2 = TrackList(dbus_interface_info={'dbus_uri': uri})  
-    print(mp2)
+    from .utils import get_players_uri, implements
+    for uri in get_players_uri():
+        if implements(uri, Interfaces.TRACK_LIST):
+            # this is optional, maybe running player don't implement it
+            # VLC does if you want try
+            mp2 = TrackList(dbus_interface_info={'dbus_uri': uri})
+            #print(dir(mp2))
+            print('Tracks:', mp2.Tracks)
+            print('CanEditTracks:', bool(mp2.CanEditTracks))
+            break
+    else:
+        print('no player with playlist interface found')

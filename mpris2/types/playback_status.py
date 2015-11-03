@@ -1,8 +1,9 @@
-"""
+'''
 From mprisV2.2 documentation
 
 http://specifications.freedesktop.org/mpris-spec/latest/Player_Interface.html#Enum:Playback_Status
-"""
+'''
+
 
 class Playback_Status(str):
     '''
@@ -16,6 +17,7 @@ class Playback_Status(str):
         There is no track currently playing.
         
     '''
+
     PLAYING = 'Playing'
     PAUSED = 'Paused'
     STOPPED = 'Stopped'
@@ -31,7 +33,7 @@ class Playback_Status(str):
         return self._status
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     assert Playback_Status.PLAYING == 'Playing'
     assert Playback_Status.PAUSED == 'Paused'
     assert Playback_Status.STOPPED == 'Stopped'

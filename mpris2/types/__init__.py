@@ -1,11 +1,5 @@
-'''
-Created on Nov 8, 2011
-
-@author: hugosenari
-'''
-
 from .loop_status import Loop_Status
-from mpris2.types.metadata_map import Metadata_Map
+from .metadata_map import Metadata_Map
 from .playback_rate import Playback_Rate
 from .playback_status import Playback_Status
 from .playlist import Playlist

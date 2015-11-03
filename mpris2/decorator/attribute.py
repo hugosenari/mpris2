@@ -1,9 +1,16 @@
+'''
+This is not part of specification
+
+Helper class to make it work as python lib
+'''
+
 from .base import Decorator
 
+
 class DbusAttr(Decorator):
-    """
+    '''
     https://docs.python.org/2/howto/descriptor.html#properties
-    """
+    '''
 
     def __init__(self, meth=None, produces=lambda resp: resp):
         self.attr = meth
@@ -33,7 +40,7 @@ class DbusAttr(Decorator):
             self.attr = value
 
     def __delete__(self, obj):
-        raise AttributeError("can't delete attribute")
+        raise AttributeError('can not delete attribute')
 
 
 if __name__ == '__main__':

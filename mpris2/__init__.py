@@ -97,5 +97,4 @@ from .mediaplayer2 import MediaPlayer2
 from .player import Player
 from .playlists import Playlists
 from .tracklist import TrackList
-
 from .utils import get_players_uri

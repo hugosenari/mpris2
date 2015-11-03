@@ -1,17 +1,20 @@
 '''
-This is python mprisV2.1 documentation
+From mprisV2.2 documentation
 
-http://www.mpris.org/2.1/spec/Player_Node.html
+http://specifications.freedesktop.org/mpris-spec/latest/Player_Interface.html
 '''
 
 from .decorator import DbusAttr
 from .decorator import DbusInterface
 from .decorator import DbusMethod
 from .decorator import DbusSignal
-
 from .interfaces import Interfaces
-from .types import Time_In_Us, Loop_Status, Playback_Status, \
-Playback_Rate, Metadata_Map, Volume
+from .types import Time_In_Us
+from .types import Loop_Status
+from .types import Playback_Status
+from .types import Playback_Rate
+from .types import Metadata_Map
+from .types import Volume
 
 
 class Player(Interfaces):
@@ -128,7 +131,7 @@ class Player(Interfaces):
         * TrackId - o (Track_Id)
             The currently playing track's identifier.
 
-            If this does not match the id of the currently-playing track, the call is ignored as "stale".
+            If this does not match the id of the currently-playing track, the call is ignored as 'stale'.
         * Position - x (Time_In_Us)
             Track position in microseconds.
 
@@ -185,7 +188,7 @@ class Player(Interfaces):
 
     @DbusSignal(iface=Interfaces.PROPERTIES)
     def PropertiesChanged(self, *args, **kw):
-        """
+        '''
         **Parameters**
         
         * args - list
@@ -194,7 +197,7 @@ class Player(Interfaces):
             named parameters passed by dbus signal
             
         Every time that some property change, signal will be called
-        """
+        '''
         pass
     
     @DbusAttr(produces=Playback_Status)
@@ -207,7 +210,7 @@ class Player(Interfaces):
             
         The current playback status.
         
-        May be "Playing", "Paused" or "Stopped".
+        May be 'Playing', 'Paused' or 'Stopped'.
         '''
         pass
     
@@ -223,9 +226,9 @@ class Player(Interfaces):
         
         May be:
         
-        * "None" if the playback will stop when there are no more tracks to play
-        * "Track" if the current track will start again from the begining once it has finished playing
-        * "Playlist" if the playback loops through a list of tracks
+        * 'None' if the playback will stop when there are no more tracks to play
+        * 'Track' if the current track will start again from the begining once it has finished playing
+        * 'Playlist' if the playback loops through a list of tracks
         
         This property is optional, and clients should deal with NotSupported errors gracefully.
         
@@ -247,7 +250,7 @@ class Player(Interfaces):
         
         If the media player has no ability to play at speeds other than the normal playback rate, this must still be implemented, and must return 1.0. The MinimumRate and MaximumRate properties must also be set to 1.0.
         
-        Not all values may be accepted by the media player. It is left to media player implementations to decide how to deal with values they cannot use; they may either ignore them or pick a "best fit" value. Clients are recommended to only use sensible fractions or multiples of 1 (eg: 0.5, 0.25, 1.5, 2.0, etc).
+        Not all values may be accepted by the media player. It is left to media player implementations to decide how to deal with values they cannot use; they may either ignore them or pick a 'best fit' value. Clients are recommended to only use sensible fractions or multiples of 1 (eg: 0.5, 0.25, 1.5, 2.0, etc).
         '''
         pass
 
@@ -277,7 +280,7 @@ class Player(Interfaces):
         
         The metadata of the current element.
         
-        If there is a current track, this must have a "mpris:trackid" entry at the very least, which contains a string that uniquely identifies this track.
+        If there is a current track, this must have a 'mpris:trackid' entry at the very least, which contains a string that uniquely identifies this track.
         
         See the type documentation for more details.
         '''
@@ -384,7 +387,7 @@ class Player(Interfaces):
         
         Whether playback can be started using Play or PlayPause.
         
-        Note that this is related to whether there is a "current track": the value should not depend on whether the track is currently paused or playing. In fact, if a track is currently playing CanControl is true), this should be true.
+        Note that this is related to whether there is a 'current track': the value should not depend on whether the track is currently paused or playing. In fact, if a track is currently playing CanControl is true), this should be true.
         
         If CanControl is false, this property should also be false.
         '''
@@ -432,34 +435,20 @@ class Player(Interfaces):
         
         This property is not expected to change, as it describes an intrinsic capability of the implementation.
         
-        If this is false, clients should assume that all properties on this interface are read-only (and will raise errors if writing to them is attempted); all methods are not implemented and all other properties starting with "Can" are also false.
+        If this is false, clients should assume that all properties on this interface are read-only (and will raise errors if writing to them is attempted); all methods are not implemented and all other properties starting with 'Can' are also false.
         '''
         pass
+
     
 if __name__ == '__main__':
-    #from mpris2.utils import SomePlayers
-    #uri = Interfaces.MEDIA_PLAYER + '.' + SomePlayers.GMUSICBROWSER
-    #mp2 = Player(dbus_interface_info={'dbus_uri': uri})
-    #print mp2.LoopStatus
-    #print mp2.Shuffle
-    #mp2.Shuffle = False if mp2.Shuffle else True
-    #print mp2.Shuffle
-    from dbus.mainloop.glib import DBusGMainLoop
-    DBusGMainLoop(set_as_default=True)
-    import gobject
-    
-    def my_handler(self, Position):
-        print( 'handled', Position, type(Position) )
-        print( 'self handled', self.last_fn_return, type(self.last_fn_return) )
-    
-    def another_handler(self, *args, **kw):
-        print( args, kw )
-
-    mloop = gobject.MainLoop()
-    #print mp2.Seeked
-    #mp2.Seeked = my_handler
-    #mp2.PropertiesChanged = another_handler
-    from mpris2.utils import get_session
-    s = get_session()
-    s.add_signal_receiver(another_handler, "PropertiesChanged", "org.freedesktop.DBus.Properties", path="/org/mpris/MediaPlayer2")
-    mloop.run()
+    from .utils import get_players_uri, implements
+    for uri in get_players_uri():
+        if implements(uri, Interfaces.PLAYER):
+            mp2 = Player(dbus_interface_info={'dbus_uri': uri})
+            print( mp2.LoopStatus )
+            print( mp2.Shuffle )
+            mp2.Shuffle = not mp2.Shuffle
+            print( mp2.Shuffle )
+            break
+    else:
+        print('no player with player interface found')

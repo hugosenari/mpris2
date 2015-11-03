@@ -1,9 +1,9 @@
 '''
-This is python mprisV2.1 documentation
+From mprisV2.2 documentation
 
-http://www.mpris.org/2.1/spec/Playlists.html
-
+http://specifications.freedesktop.org/mpris-spec/latest/Playlists_Interface.html
 '''
+
 from .decorator import DbusAttr
 from .decorator import DbusInterface
 from .decorator import DbusMethod
@@ -11,7 +11,6 @@ from .decorator import DbusSignal
 from .interfaces import Interfaces
 from .types import Playlist, Maybe_Playlist
 from dbus import UInt32
-
 
 
 class Playlists(Interfaces):
@@ -39,7 +38,7 @@ class Playlists(Interfaces):
         
         Note that this must be implemented. If the media player does not allow clients to change the playlist, it should not implement this interface at all.
             
-        It is up to the media player whether this completely replaces the current tracklist, or whether it is merely inserted into the tracklist and the first track starts. For example, if the media player is operating in a "jukebox" mode, it may just append the playlist to the list of upcoming tracks, and skip to the first track in the playlist.
+        It is up to the media player whether this completely replaces the current tracklist, or whether it is merely inserted into the tracklist and the first track starts. For example, if the media player is operating in a 'jukebox' mode, it may just append the playlist to the list of upcoming tracks, and skip to the first track in the playlist.
         '''
         pass
     
@@ -121,20 +120,21 @@ class Playlists(Interfaces):
         Note that this may not have a value even after ActivatePlaylist is called with a valid playlist id as ActivatePlaylist implementations have the option of simply inserting the contents of the playlist into the current tracklist.
         '''
         pass
-    
+
+
 if __name__ == '__main__':
-    from mpris2.utils import SomePlayers
-    uri = Interfaces.MEDIA_PLAYER + '.' + SomePlayers.RHYTHMBOX
-    mp2 = Playlists(dbus_interface_info={'dbus_uri': uri})
-    print( mp2.ActivePlaylist )
-    print( 'Active is valid playlist: ', bool(mp2.ActivePlaylist) )
-    if mp2.ActivePlaylist:
-        print( 'Active playlist name:', mp2.ActivePlaylist.Playlist.Name )
-    from mpris2.types import Playlist_Ordering
-    print( hasattr('anystring', 'eusequenaotem') )
-    print( 'bla', mp2.GetPlaylists(0, 20, Playlist_Ordering.ALPHABETICAL, False) )
-    
-    
-    
-    
-    
+    from .utils import get_players_uri, implements
+    for uri in get_players_uri():
+        if implements(uri, Interfaces.PLAYLISTS):
+            mp2 = Playlists(dbus_interface_info={'dbus_uri': uri})
+            print( mp2.ActivePlaylist )
+            print( 'Active is valid playlist: ', bool(mp2.ActivePlaylist) )
+            if mp2.ActivePlaylist:
+                print( 'Active playlist name:', mp2.ActivePlaylist.Playlist.Name )
+            from mpris2.types import Playlist_Ordering
+            print( hasattr('anystring', 'eusequenaotem') )
+            print( 'bla', mp2.GetPlaylists(0, 20,
+                                           Playlist_Ordering.ALPHABETICAL, False) )
+            break
+    else:
+        print('no player with playlist interface found')

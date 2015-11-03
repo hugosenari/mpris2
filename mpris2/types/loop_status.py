@@ -1,8 +1,8 @@
-"""
+'''
 From mprisV2.2 documentation
 
 http://specifications.freedesktop.org/mpris-spec/latest/Player_Interface.html#Enum:Loop_Status
-"""
+'''
 
 class Loop_Status(str):
     '''
@@ -29,7 +29,7 @@ class Loop_Status(str):
         return self._status
 
 
-if  __name__ == "__main__":
+if  __name__ == '__main__':
     assert Loop_Status.PLAYLIST != 'None'
     assert Loop_Status.PLAYLIST == 'Playlist'
     assert Loop_Status.TRACK == 'Track'

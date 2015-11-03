@@ -7,66 +7,66 @@ class Some_Players(object):
      **Some players**
     
     * AUDACIOUS
-        "audacious"
+        'audacious'
     * BANSHEE 
-        "banshee"
+        'banshee'
     * BEATBOX
-        "beatbox"
+        'beatbox'
     * BMP
-        "bmp"
+        'bmp'
     * CLEMENTINE
-        "clementine"
+        'clementine'
     * DRAGONPLAYER
-        "dragonplayer"
+        'dragonplayer'
     * EXAILE
-        "exaile"
+        'exaile'
     * GMUSICBROWSER
-        "gmusicbrowser"
+        'gmusicbrowser'
     * GMPC
-        "gmpc"
+        'gmpc'
     * GUAYADEQUE
-        "guayadeque"
+        'guayadeque'
     * MOPIDY
-        "mopidy"
+        'mopidy'
     * MPDRIS
-        "mpDris"
+        'mpDris'
     * QUODLIBET
-        "quodlibet"
+        'quodlibet'
     * RAVEND
-        "ravend"
+        'ravend'
     * RHYTHMBOX
-        "rhythmbox"
+        'rhythmbox'
     * SPOTIFY
-        "spotify"
+        'spotify'
     * VLC
-        "vlc"
+        'vlc'
     * XBMC
-        "xbmc"
+        'xbmc'
     * XMMS2
-        "xmms2"
+        'xmms2'
     * XNOISE
-        "xnoise"
+        'xnoise'
     '''
-    AUDACIOUS = "audacious"
-    BANSHEE = "banshee"
-    BEATBOX = "beatbox"
-    BMP = "bmp"
-    CLEMENTINE = "clementine"
-    DRAGONPLAYER = "dragonplayer"
-    EXAILE = "exaile"
-    GMUSICBROWSER = "gmusicbrowser"
-    GMPC = "gmpc"
-    GUAYADEQUE = "guayadeque"
-    MOPIDY = "mopidy"
-    MPDRIS = "mpDris"
-    QUODLIBET = "quodlibet"
-    RAVEND = "ravend"
-    RHYTHMBOX = "rhythmbox"
-    SPOTIFY = "spotify"
-    VLC = "vlc"
-    XBMC = "xbmc"
-    XMMS2 = "xmms2"
-    XNOISE = "xnoise"
+    AUDACIOUS = 'audacious'
+    BANSHEE = 'banshee'
+    BEATBOX = 'beatbox'
+    BMP = 'bmp'
+    CLEMENTINE = 'clementine'
+    DRAGONPLAYER = 'dragonplayer'
+    EXAILE = 'exaile'
+    GMUSICBROWSER = 'gmusicbrowser'
+    GMPC = 'gmpc'
+    GUAYADEQUE = 'guayadeque'
+    MOPIDY = 'mopidy'
+    MPDRIS = 'mpDris'
+    QUODLIBET = 'quodlibet'
+    RAVEND = 'ravend'
+    RHYTHMBOX = 'rhythmbox'
+    SPOTIFY = 'spotify'
+    VLC = 'vlc'
+    XBMC = 'xbmc'
+    XMMS2 = 'xmms2'
+    XNOISE = 'xnoise'
     
     @staticmethod
     def get_dict():

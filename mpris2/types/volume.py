@@ -1,8 +1,9 @@
-"""
+'''
 From mprisV2.2 documentation
 
 http://specifications.freedesktop.org/mpris-spec/latest/Player_Interface.html#Simple-Type:Volume
-"""
+'''
+
 
 class Volume(float):
     '''
@@ -29,7 +30,7 @@ class Volume(float):
         return str(self._time)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     assert Volume(1) == 1
     assert Volume(0.1) == 0.1
     assert Volume(1) == 1.0
