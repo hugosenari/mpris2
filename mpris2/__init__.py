@@ -37,8 +37,20 @@ It provides a mechanism for compliant media players discovery, basic playback an
 
 Changes
 =======
+ Changes (Permalink)
+
+From 2.1 to 2.2:
+
+* Added the optional Fullscreen and CanSetFullscreen properties to the org.mpris.MediaPlayer2 interface.
+* The path /org/mpris/MediaPlayer2/TrackList/NoTrack now represents "no track" where required in the org.mpris.MediaPlayer2.TrackList interface (since empty paths are not allowed by D-Bus).
+* The suggested unique instance identifier no longer violates the D-Bus specification by begining with a digit.
+
+
+
+
 From 2.0 to 2.1:
-    Added the optional org.mpris.MediaPlayer2.Playlists interface.
+
+* Added the optional org.mpris.MediaPlayer2.Playlists interface.
 
 
 
@@ -53,10 +65,11 @@ Each media player *must* request a unique bus name which begins with *org.mpris.
 
 This allows clients to list available media players (either already running or which can be started via D-Bus activation)
 
-In the case where the media player allows multiple instances running simultaneously, each additional instance should request a unique bus name, adding a dot and a unique identifier (such as a UNIX process id) to its usual bus name. For example, this could be
+In the case where the media player allows multiple instances running simultaneously, each additional instance should request a unique bus name, adding a dot and a unique identifier to its usual bus name, such as one based on a UNIX process id. For example, this could be:
 
 * org.mpris.MediaPlayer2.vlc.7389
 
+Note: According to the D-Bus specification, the unique identifier "must only contain the ASCII characters '[A-Z][a-z][0-9]_-'" and "must not begin with a digit". 
 
 Entry point
 ===========

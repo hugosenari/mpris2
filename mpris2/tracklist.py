@@ -83,7 +83,6 @@ class TrackList(Interfaces):
     @DbusMethod()
     def AddTrack(self, Uri, AfterTrack='', SetAsCurrent=False):
         '''
-
         **Parameters:**
         
         * Uri - s (Uri)
@@ -93,7 +92,9 @@ class TrackList(Interfaces):
             org.mpris.MediaPlayer2.SupportedMimeTypes
         * AfterTrack - o (Track_Id)
             The identifier of the track after which the new item should be 
-            inserted. An empty string means at the begining of the track list.
+            inserted. The path /org/mpris/MediaPlayer2/TrackList/NoTrack 
+            indicates that the track should be inserted at the start of the
+            track list.
         * SetAsCurrent - b
             Whether the newly inserted track should be considered as the 
             current track. Setting this to trye has the same effect as calling
@@ -118,6 +119,7 @@ class TrackList(Interfaces):
         
         * TrackId - o (TrackId)
             Identifier of the track to be removed.
+            /org/mpris/MediaPlayer2/TrackList/NoTrack is not a valid value for this argument. 
         
         Removes an item from the TrackList.
         
@@ -139,6 +141,8 @@ class TrackList(Interfaces):
         
         * TrackId - o (Track_Id)
             Identifier of the track to skip to.
+            
+            /org/mpris/MediaPlayer2/TrackList/NoTrack is not a valid value for this argument. 
         
         Skip to the specified TrackId.
         
@@ -158,6 +162,11 @@ class TrackList(Interfaces):
             The new content of the tracklist.
         * CurrentTrack - o (Track_Id)
             The identifier of the track to be considered as current.
+
+            /org/mpris/MediaPlayer2/TrackList/NoTrack indicates that there is no current track.
+
+            This should correspond to the mpris:trackid field of the Metadata property of 
+            the org.mpris.MediaPlayer2.Player interface. 
     
         Indicates that the entire tracklist has been replaced.
         
@@ -180,7 +189,9 @@ class TrackList(Interfaces):
             See the type documentation for more details.
         * AfterTrack - o (Track_Id)
             The identifier of the track after which the new track was inserted.
-            An empty string means at the begining of the tracklist.
+            The path /org/mpris/MediaPlayer2/TrackList/NoTrack indicates that
+            the track was inserted at the start of the track list.
+
 
         Indicates that a track has been added to the track list.
         '''
@@ -193,6 +204,8 @@ class TrackList(Interfaces):
         
         * TrackId - o (Track_Id)
             The identifier of the track being removed.
+            
+            /org/mpris/MediaPlayer2/TrackList/NoTrack is not a valid value for this argument. 
 
         Indicates that a track has been removed from the track list.
         '''
@@ -205,6 +218,11 @@ class TrackList(Interfaces):
         
         * TrackId - o (Track_Id)
             The id of the track which metadata has changed.
+
+            If the track id has changed, this will be the old value.
+
+            /org/mpris/MediaPlayer2/TrackList/NoTrack is not a valid value for this argument.
+
         * Metadata - a{sv} (Metadata_Map)
             The new track metadata.    
 

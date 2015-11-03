@@ -65,18 +65,58 @@ class MediaPlayer2(Interfaces):
         If false, calling Quit will have no effect, and may raise a NotSupported error. If true, calling Quit will cause the media application to attempt to quit (although it may still be prevented from quitting by the user, for example).
         '''
         pass
-    
+
     @DbusAttr
-    def Identity(self):
+    def Fullscreen(self):
+        '''
+        **Returns**
+        
+        Read Write
+            Whether the media player is occupying the fullscreen.
+            
+        This property is optional. Clients should handle its absence gracefully.
+        
+        When this property changes, the org.freedesktop.DBus.Properties.PropertiesChanged signal is emitted with the new value.
+        
+        This is typically used for videos. A value of true indicates that the media player is taking up the full screen.
+        
+        Media center software may well have this value fixed to true
+        
+        If CanSetFullscreen is true, clients may set this property to true to tell the media player to enter fullscreen mode, or to false to return to windowed mode.
+        
+        If CanSetFullscreen is false, then attempting to set this property should have no effect, and may raise an error. However, even if it is true, the media player may still be unable to fulfil the request, in which case attempting to set this property will have no effect (but should not raise an error).
+        
+        Added in 2.2.
+        '''
+
+    @DbusAttr    
+    def CanSetFullscreen(self):
         '''
         **Returns**
         
         Read only
-            When this property changes, the org.freedesktop.DBus.Properties.PropertiesChanged signal is emitted with the new value.
+            If false, attempting to set Fullscreen will have no effect, and may raise an error. If true, attempting to set Fullscreen will not raise an error, and (if it is different from the current value) will cause the media player to attempt to enter or exit fullscreen mode.
 
-        If false, calling Raise will have no effect, and may raise a NotSupported error. If true, calling Raise will cause the media application to attempt to bring its user interface to the front, although it may be prevented from doing so (by the window manager, for example).
+        This property is optional. Clients should handle its absence gracefully.
+
+        When this property changes, the org.freedesktop.DBus.Properties.PropertiesChanged signal is emitted with the new value.
+        
+        Added in 2.2.
+        
+        ..note::
+            Note that the media player may be unable to fulfil the request. In this case, the value will not change. If the media player knows in advance that it will not be able to fulfil the request, however, this property should be false.
         '''
-        pass
+
+    @DbusAttr
+    def CanRaise(self):
+        '''
+        **Returns**
+        
+        Read only
+            If false, calling Raise will have no effect, and may raise a NotSupported error. If true, calling Raise will cause the media application to attempt to bring its user interface to the front, although it may be prevented from doing so (by the window manager, for example).
+
+        When this property changes, the org.freedesktop.DBus.Properties.PropertiesChanged signal is emitted with the new value.
+        '''
     
     @DbusAttr
     def HasTrackList(self):
@@ -103,6 +143,18 @@ class MediaPlayer2(Interfaces):
         Example: The desktop entry file is '/usr/share/applications/vlc.desktop', and this property contains 'vlc'
 
         This property is optional. Clients should handle its absence gracefully
+        '''
+        pass
+    
+    @DbusAttr
+    def Identity(self):
+        '''
+        **Returns**
+        
+        Read only
+            When this property changes, the org.freedesktop.DBus.Properties.PropertiesChanged signal is emitted with the new value.
+
+        If false, calling Raise will have no effect, and may raise a NotSupported error. If true, calling Raise will cause the media application to attempt to bring its user interface to the front, although it may be prevented from doing so (by the window manager, for example).
         '''
         pass
     
