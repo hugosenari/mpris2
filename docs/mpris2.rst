@@ -1,15 +1,18 @@
-mpris2 Package
+mpris2 package
 ==============
 
-:mod:`mpris2` Package
----------------------
+Subpackages
+-----------
 
-.. automodule:: mpris2.__init__
-    :members:
-    :undoc-members:
-    :show-inheritance:
+.. toctree::
 
-:mod:`interfaces` Module
+    mpris2.decorator
+    mpris2.types
+
+Submodules
+----------
+
+mpris2.interfaces module
 ------------------------
 
 .. automodule:: mpris2.interfaces
@@ -17,15 +20,7 @@ mpris2 Package
     :undoc-members:
     :show-inheritance:
 
-:mod:`loop_status` Module
--------------------------
-
-.. automodule:: mpris2.loop_status
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-:mod:`mediaplayer2` Module
+mpris2.mediaplayer2 module
 --------------------------
 
 .. automodule:: mpris2.mediaplayer2
@@ -33,31 +28,7 @@ mpris2 Package
     :undoc-members:
     :show-inheritance:
 
-:mod:`metada_map` Module
-------------------------
-
-.. automodule:: mpris2.metada_map
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-:mod:`playback_rate` Module
----------------------------
-
-.. automodule:: mpris2.playback_rate
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-:mod:`playback_status` Module
------------------------------
-
-.. automodule:: mpris2.playback_status
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-:mod:`player` Module
+mpris2.player module
 --------------------
 
 .. automodule:: mpris2.player
@@ -65,31 +36,7 @@ mpris2 Package
     :undoc-members:
     :show-inheritance:
 
-:mod:`playlist` Module
-----------------------
-
-.. automodule:: mpris2.playlist
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-:mod:`playlist_id` Module
--------------------------
-
-.. automodule:: mpris2.playlist_id
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-:mod:`playlist_ordering` Module
--------------------------------
-
-.. automodule:: mpris2.playlist_ordering
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-:mod:`playlists` Module
+mpris2.playlists module
 -----------------------
 
 .. automodule:: mpris2.playlists
@@ -97,7 +44,7 @@ mpris2 Package
     :undoc-members:
     :show-inheritance:
 
-:mod:`some_players` Module
+mpris2.some_players module
 --------------------------
 
 .. automodule:: mpris2.some_players
@@ -105,15 +52,7 @@ mpris2 Package
     :undoc-members:
     :show-inheritance:
 
-:mod:`time_in_us` Module
-------------------------
-
-.. automodule:: mpris2.time_in_us
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-:mod:`tracklist` Module
+mpris2.tracklist module
 -----------------------
 
 .. automodule:: mpris2.tracklist
@@ -121,23 +60,7 @@ mpris2 Package
     :undoc-members:
     :show-inheritance:
 
-:mod:`types` Module
--------------------
-
-.. automodule:: mpris2.types
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-:mod:`uri` Module
------------------
-
-.. automodule:: mpris2.uri
-    :members:
-    :undoc-members:
-    :show-inheritance:
-
-:mod:`utils` Module
+mpris2.utils module
 -------------------
 
 .. automodule:: mpris2.utils
@@ -145,11 +68,11 @@ mpris2 Package
     :undoc-members:
     :show-inheritance:
 
-:mod:`volume` Module
---------------------
 
-.. automodule:: mpris2.volume
+Module contents
+---------------
+
+.. automodule:: mpris2
     :members:
     :undoc-members:
     :show-inheritance:
-

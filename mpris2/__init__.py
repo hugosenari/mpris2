@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: UTF8 -*
 '''
-This is mprisV2.1 documentation
+This is mprisV2.2 documentation
 
 http://www.mpris.org/2.1/spec/index.html
 
@@ -9,7 +9,7 @@ Also works as python lib.
 
 
 
-Version 2.1
+Version 2.2
 ===========
 Copyright © 2006-2010 the VideoLAN team(Mirsal Ennaime, Rafaël Carré, Jean-Paul Saman)
 
@@ -17,7 +17,7 @@ Copyright © 2005-2008 Milosz Derezynski
 
 Copyright © 2008 Nick Welch
 
-Copyright © 2010 Alex Merry
+Copyright © 2010-2012 Alex Merry
 
 This library is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2.1 of the License, or (at your option) any later version.
 
@@ -44,8 +44,6 @@ From 2.1 to 2.2:
 * Added the optional Fullscreen and CanSetFullscreen properties to the org.mpris.MediaPlayer2 interface.
 * The path /org/mpris/MediaPlayer2/TrackList/NoTrack now represents "no track" where required in the org.mpris.MediaPlayer2.TrackList interface (since empty paths are not allowed by D-Bus).
 * The suggested unique instance identifier no longer violates the D-Bus specification by begining with a digit.
-
-
 
 
 From 2.0 to 2.1:

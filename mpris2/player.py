@@ -25,7 +25,7 @@ class Player(Interfaces):
     @DbusInterface(Interfaces.PLAYER, Interfaces.OBJECT_PATH)
     def __init__(self):
         '''Constructor'''
-        pass
+        
     
     @DbusMethod
     def Next(self):
@@ -38,7 +38,7 @@ class Player(Interfaces):
 
         If CanGoNext is false, attempting to call this method should have no effect.
         '''
-        pass
+        
     
     @DbusMethod 
     def Previous(self):
@@ -51,7 +51,7 @@ class Player(Interfaces):
 
         If CanGoPrevious is false, attempting to call this method should have no effect.
         '''
-        pass
+        
     
     @DbusMethod
     def Pause(self):
@@ -64,7 +64,7 @@ class Player(Interfaces):
 
         If CanPause is false, attempting to call this method should have no effect.
         '''
-        pass
+        
     
     @DbusMethod
     def PlayPause(self):
@@ -77,7 +77,7 @@ class Player(Interfaces):
 
         If CanPause is false, attempting to call this method should have no effect and raise an error.
         '''
-        pass
+        
     
     @DbusMethod
     def Stop(self):
@@ -90,7 +90,7 @@ class Player(Interfaces):
 
         If CanControl is false, attempting to call this method should have no effect and raise an error.
         '''
-        pass
+        
     
     @DbusMethod
     def Play(self):
@@ -103,7 +103,7 @@ class Player(Interfaces):
 
         If CanPlay is false, attempting to call this method should have no effect.
         '''
-        pass
+        
     
     @DbusMethod
     def Seek(self, Offet):
@@ -121,7 +121,7 @@ class Player(Interfaces):
 
         If the CanSeek property is false, this has no effect.
         '''
-        pass
+        
     
     @DbusMethod
     def SetPosition(self, TrackId, Position):
@@ -145,7 +145,7 @@ class Player(Interfaces):
 
         If the CanSeek property is false, this has no effect.
         '''
-        pass
+        
     
     @DbusMethod
     def OpenUri(self, Uri):
@@ -165,7 +165,7 @@ class Player(Interfaces):
 
         If the media player implements the TrackList interface, then the opened track should be made part of the tracklist, the org.mpris.MediaPlayer2.TrackList.TrackAdded or org.mpris.MediaPlayer2.TrackList.TrackListReplaced signal should be fired, as well as the org.freedesktop.DBus.Properties.PropertiesChanged signal on the tracklist interface.
         '''
-        pass
+        
     
     @DbusSignal
     def Seeked(self, Position):
@@ -198,7 +198,7 @@ class Player(Interfaces):
             
         Every time that some property change, signal will be called
         '''
-        pass
+        
     
     @DbusAttr(produces=Playback_Status)
     def PlaybackStatus(self):
@@ -212,7 +212,7 @@ class Player(Interfaces):
         
         May be 'Playing', 'Paused' or 'Stopped'.
         '''
-        pass
+        
     
     @DbusAttr(produces=Loop_Status)
     def LoopStatus(self):
@@ -234,7 +234,7 @@ class Player(Interfaces):
         
         If CanControl is false, attempting to set this property should have no effect and raise an error.
         '''
-        pass    
+            
 
     @DbusAttr(produces=Playback_Rate)
     def Rate(self):
@@ -252,7 +252,7 @@ class Player(Interfaces):
         
         Not all values may be accepted by the media player. It is left to media player implementations to decide how to deal with values they cannot use; they may either ignore them or pick a 'best fit' value. Clients are recommended to only use sensible fractions or multiples of 1 (eg: 0.5, 0.25, 1.5, 2.0, etc).
         '''
-        pass
+        
 
     @DbusAttr
     def Shuffle(self):
@@ -268,7 +268,7 @@ class Player(Interfaces):
         
         If CanControl is false, attempting to set this property should have no effect and raise an error.
         '''
-        pass
+        
 
     @DbusAttr(produces=Metadata_Map)
     def Metadata(self):
@@ -284,7 +284,7 @@ class Player(Interfaces):
         
         See the type documentation for more details.
         '''
-        pass
+        
 
     @DbusAttr(produces=Volume)
     def Volume(self):
@@ -300,7 +300,7 @@ class Player(Interfaces):
         
         If CanControl is false, attempting to set this property should have no effect and raise an error.
         '''
-        pass
+        
 
     @DbusAttr
     def Position(self):
@@ -317,7 +317,7 @@ class Player(Interfaces):
         
         If the playback progresses in a way that is inconstistant with the Rate property, the Seeked signal is emited.
         '''
-        pass
+        
 
     @DbusAttr
     def MinimumRate(self):
@@ -333,7 +333,7 @@ class Player(Interfaces):
         
         This value should always be 1.0 or less.
         '''
-        pass
+        
 
     @DbusAttr
     def MaximumRate(self):
@@ -347,7 +347,7 @@ class Player(Interfaces):
         
         This value should always be 1.0 or greater.
         '''
-        pass
+        
 
     @DbusAttr
     def CanGoNext(self):
@@ -361,7 +361,7 @@ class Player(Interfaces):
         
         If CanControl is false, this property should also be false.
         '''
-        pass
+        
     
     @DbusAttr
     def CanGoPrevious(self):
@@ -375,7 +375,7 @@ class Player(Interfaces):
         
         If CanControl is false, this property should also be false.
         '''
-        pass
+        
     
     @DbusAttr
     def CanPlay(self):
@@ -391,7 +391,7 @@ class Player(Interfaces):
         
         If CanControl is false, this property should also be false.
         '''
-        pass
+        
         
     @DbusAttr
     def CanPause(self):
@@ -407,7 +407,6 @@ class Player(Interfaces):
         
         If CanControl is false, this property should also be false.
         '''
-        pass
     
     @DbusAttr
     def CanSeek(self):
@@ -421,7 +420,6 @@ class Player(Interfaces):
         
         If CanControl is false, this property should also be false.
         '''
-        pass
     
     @DbusAttr
     def CanControl(self):
@@ -437,7 +435,6 @@ class Player(Interfaces):
         
         If this is false, clients should assume that all properties on this interface are read-only (and will raise errors if writing to them is attempted); all methods are not implemented and all other properties starting with 'Can' are also false.
         '''
-        pass
 
     
 if __name__ == '__main__':

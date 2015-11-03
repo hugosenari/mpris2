@@ -25,6 +25,7 @@ class DbusInterface(Decorator):
     def __call__(self, meth):
         ''' Called when any decorated class is loaded'''
         self.wrapped = meth
+        self._update_me(meth)
         
         @wraps(meth)
         def dbusWrapedInterface(*args, **kw):

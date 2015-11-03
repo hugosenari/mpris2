@@ -15,9 +15,11 @@ class DbusAttr(Decorator):
     def __init__(self, meth=None, produces=lambda resp: resp):
         self.attr = meth
         self.produces = produces
+        self._update_me(meth)
 
     def __call__(self, meth):
         self.attr = meth
+        self._update_me(meth)
         return self
     
     def __get__(self, obj, objtype=None):

@@ -28,9 +28,11 @@ class DbusMethod(Decorator):
         self.args_to_dbus = args_to_dbus
         self.kw_to_dbus = kw_to_dbus
         self.obj = None
+        self._update_me(meth)
 
     def __call__(self, meth=None):
         self.meth = meth
+        self._update_me(meth)
         return self
 
     def __get__(self, obj=None, cls=None):

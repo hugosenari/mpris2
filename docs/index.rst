@@ -23,7 +23,7 @@ Require:
 ========
 
 To use this lib you need:
-Python dbus and pydbusdecorator (https://github.com/hugosenari/pydbusdecorator)
+Python dbus
 
 
 

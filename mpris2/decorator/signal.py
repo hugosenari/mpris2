@@ -10,9 +10,11 @@ class DbusSignal(Decorator):
         self.attr = meth
         self.handler = None
         self.iface = iface
+        self._update_me(meth)
 
     def __call__(self, meth):
         self.attr = meth
+        self._update_me(meth)
         return self
     
     def __get__(self, obj, objtype=None):

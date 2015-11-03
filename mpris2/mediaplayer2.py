@@ -27,7 +27,6 @@ class MediaPlayer2(Interfaces):
     @DbusInterface(Interfaces.MEDIA_PLAYER, Interfaces.OBJECT_PATH)
     def __init__(self):
         '''Constructor'''
-        pass
     
     @DbusMethod
     def Raise(self):
@@ -36,7 +35,6 @@ class MediaPlayer2(Interfaces):
         
         The media player may be unable to control how its user interface is displayed, or it may not have a graphical user interface at all. In this case, the Identity property is false and this method does nothing.
         '''
-        return None
     
     @DbusMethod
     def Quit(self):
@@ -50,7 +48,6 @@ class MediaPlayer2(Interfaces):
         
         If the media player does not have a UI, this should be implemented
         '''
-        pass
     
     @DbusAttr
     def CanQuit(self):
@@ -64,7 +61,6 @@ class MediaPlayer2(Interfaces):
 
         If false, calling Quit will have no effect, and may raise a NotSupported error. If true, calling Quit will cause the media application to attempt to quit (although it may still be prevented from quitting by the user, for example).
         '''
-        pass
 
     @DbusAttr
     def Fullscreen(self):
@@ -128,7 +124,6 @@ class MediaPlayer2(Interfaces):
             
         Indicates whether the /org/mpris/MediaPlayer2 object implements the org.mpris.MediaPlayer2.TrackList interface.
         '''
-        pass
     
     @DbusAttr
     def DesktopEntry(self):
@@ -144,7 +139,6 @@ class MediaPlayer2(Interfaces):
 
         This property is optional. Clients should handle its absence gracefully
         '''
-        pass
     
     @DbusAttr
     def Identity(self):
@@ -156,7 +150,6 @@ class MediaPlayer2(Interfaces):
 
         If false, calling Raise will have no effect, and may raise a NotSupported error. If true, calling Raise will cause the media application to attempt to bring its user interface to the front, although it may be prevented from doing so (by the window manager, for example).
         '''
-        pass
     
     @DbusAttr
     def SupportedUriSchemes(self):
@@ -175,7 +168,6 @@ class MediaPlayer2(Interfaces):
         .. note::
             This is important for clients to know when using the editing capabilities of the Playlist interface, for example.
         '''
-        pass
     
     @DbusAttr
     def SupportedMimeTypes(self):
@@ -192,7 +184,6 @@ class MediaPlayer2(Interfaces):
         .. note::
             This is important for clients to know when using the editing capabilities of the Playlist interface, for example.
         '''
-        pass
     
     @DbusSignal(iface=Interfaces.PROPERTIES)
     def PropertiesChanged(self, *args, **kw):
@@ -206,7 +197,6 @@ class MediaPlayer2(Interfaces):
             
         Every time that some property change, signal will be called
         '''
-        pass
 
 
 if __name__ == '__main__':
