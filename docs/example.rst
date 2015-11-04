@@ -60,8 +60,8 @@ Other examples:
 >>> import gobject
 >>> mloop = gobject.MainLoop()
 
->>> from mpris2 import get_players_uri
 >>> # list all running players
+>>> from mpris2 import get_players_uri
 >>> print([uri for uri in get_players_uri()])
 >>> # get_players_uri can be called with filter parameter
 >>> get_players_uri('.+rhythmbox')
