@@ -73,12 +73,12 @@ Entry point
 ===========
 The media player *must* expose the */org/mpris/MediaPlayer2* object path, which *must* implement the following interfaces:
 
-* org.mpris.MediaPlayer2
-* org.mpris.MediaPlayer2.Player
+* :doc:`org.mpris.MediaPlayer2<../mpris2.mediaplayer2>`
+* :doc:`org.mpris.MediaPlayer2.Player<../mpris2.player>`
 
-The */org/mpris/MediaPlayer2* object may implement the *org.mpris.MediaPlayer2.TrackList* interface.
+The */org/mpris/MediaPlayer2* object may implement the :doc:`org.mpris.MediaPlayer2.TrackList<../mpris2.tracklist>` interface.
 
-The */org/mpris/MediaPlayer2* object may implement the *org.mpris.MediaPlayer2.Playlists* interface.
+The */org/mpris/MediaPlayer2* object may implement the :doc:`org.mpris.MediaPlayer2.Playlists<../mpris2.playlists>` interface.
 
 
 The PropertiesChanged signal
@@ -95,10 +95,10 @@ Corrections
 
 Interfaces
 ==========
-* org.mpris.MediaPlayer2
-* org.mpris.MediaPlayer2.TrackList
-* org.mpris.MediaPlayer2.Player
-* org.mpris.MediaPlayer2.Playlists
+* :doc:`org.mpris.MediaPlayer2<../mpris2.mediaplayer2>`
+* :doc:`org.mpris.MediaPlayer2.Player<../mpris2.player>`
+* :doc:`org.mpris.MediaPlayer2.Playlists<../mpris2.playlists>`
+* :doc:`org.mpris.MediaPlayer2.TrackList<../mpris2.tracklist>`
 
 
 '''
