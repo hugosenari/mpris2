@@ -34,14 +34,16 @@ Configure dbus and mainloop
 >>> # mloop = gobject.MainLoop()
 
 
-Discover your player dbus mpris uri
------------------------------------
+Discover your player mpris uri 
+------------------------------
 
 >>> # you can use get_players_uri to get current running players uri
 >>> from mpris2 import get_players_uri
->>> print([uri for uri in get_players_uri()])
 >>> # next raise StopIteration if not found
 >>> uri = next(get_players_uri())
+
+>>> # list all
+>>> # print([uri for uri in get_players_uri()])
 
 >>> # get_players_uri can be called with filter parameter
 >>> # get_players_uri('.+rhythmbox')

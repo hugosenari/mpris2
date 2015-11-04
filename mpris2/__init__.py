@@ -1,11 +1,11 @@
 #!/usr/bin/python
 # -*- coding: UTF8 -*
 '''
-This is mprisV2.2 documentation
+This is a copy of mprisV2.2 documentation
 
-http://www.mpris.org/2.1/spec/index.html
+http://specifications.freedesktop.org/mpris-spec/latest/
 
-Also works as python lib.
+That also works as python lib.
 
 
 
