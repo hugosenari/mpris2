@@ -7,9 +7,6 @@ Configure dbus and mainloop
 >>> # configure mainloop (not required if you wont expect signals)
 >>> from dbus.mainloop.glib import DBusGMainLoop
 >>> DBusGMainLoop(set_as_default=True)
->>> # python3
->>> import gi.repository.GLib
->>> mloop = gi.repository.GLib.MainLoop()
 
 
 Discover your player mpris uri 
@@ -50,6 +47,9 @@ Wait signal
 >>>     print(args, kw)
 >>> 
 >>> player.PropertiesChanged = another_handler
+>>> # python3
+>>> import gi.repository.GLib
+>>> mloop = gi.repository.GLib.MainLoop()
 >>> mloop.run()
 
 

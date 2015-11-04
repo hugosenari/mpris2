@@ -4,7 +4,7 @@ This is not part of specification
 Helper class to make it work as python lib
 '''
 
-from .base import Decorator
+from .base import Decorator, ATTR_KEY
 
 
 class DbusAttr(Decorator):
@@ -27,16 +27,18 @@ class DbusAttr(Decorator):
         if not obj:
             return self
 
-        props = obj._dbus_interface_info.properties
-        iface = obj._dbus_interface_info.iface
+        _dbus = getattr(obj, ATTR_KEY)
+        props = _dbus.properties
+        iface = _dbus.iface
         result = props.Get(iface, self.attr.__name__)
         produces = self.produces
         return produces(result)
 
     def __set__(self, obj, value):
         if obj:
-            props = obj._dbus_interface_info.properties
-            iface = obj._dbus_interface_info.iface
+            _dbus = getattr(obj, ATTR_KEY)
+            props = _dbus.properties
+            iface = _dbus.iface
             props.Set(iface, self.attr.__name__, value)
         else: #static call
             self.attr = value

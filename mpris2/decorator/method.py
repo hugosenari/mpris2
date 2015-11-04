@@ -4,7 +4,7 @@ This is not part of specification
 Helper class to make it work as python lib
 '''
 
-from .base import Decorator
+from .base import Decorator, ATTR_KEY
 
 
 def kw_to_dbus(**kw):
@@ -42,11 +42,12 @@ class DbusMethod(Decorator):
         return self._call_dbus
     
     def _call_dbus(self, *args, **kwds):
+        _dbus = getattr(self.obj, ATTR_KEY)
         if self.iface:
             iface = self.iface
         else:
-            iface = self.obj._dbus_interface_info.iface
-        bus_obj = self.obj._dbus_interface_info.object
+            iface = _dbus.iface
+        bus_obj = _dbus.object
         bus_meth = bus_obj.get_dbus_method(self.meth.__name__, iface)
         args = self.convert_args_to_dbus_args(*args)
         kwds = self.convert_kw_to_dbus_kw(**kwds)

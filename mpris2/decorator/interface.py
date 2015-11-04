@@ -6,7 +6,8 @@ Helper class to make it work as python lib
 
 import dbus
 from functools import wraps
-from .base import Decorator
+from .base import Decorator, ARG_KEY, I_PROP, ATTR_KEY
+
 
 
 class DbusInterface(Decorator):
@@ -29,26 +30,38 @@ class DbusInterface(Decorator):
         
         @wraps(meth)
         def dbusWrapedInterface(*args, **kw):
-            if 'dbus_interface_info' in kw: 
-                _args = kw.get('dbus_interface_info', {})
-                self.uri = _args.get('dbus_uri', self.uri)
-                self.path = _args.get('dbus_path', self.path) 
-                self.iface = _args.get('dbus_iface', self.iface)
-                self.object = _args.get('dbus_object', self.object)
-                self.session = _args.get('dbus_session', self.session)
-                del kw['dbus_interface_info']
+            _args = kw.get(ARG_KEY, {})
+            self.uri = _args.get('dbus_uri', self.uri)
+            self.path = _args.get('dbus_path', self.path) 
+            self.iface = _args.get('dbus_iface', self.iface)
+            self.object = _args.get('dbus_object', self.object)
+            self.session = _args.get('dbus_session', self.session)
+            if ARG_KEY in kw: 
+                del kw[ARG_KEY]
             if not self.object:
-                bus = self.session or dbus.SessionBus()
+                bus = self.session = self.session or dbus.SessionBus()
                 self.object = bus.get_object(self.uri, self.path)
             if not self.interface:
                 self.interface = dbus.Interface(self.object,
                                                 dbus_interface=self.iface)
             if not self.properties:
-                self.properties = dbus.Interface(self.object,
-                    'org.freedesktop.DBus.Properties')
+                self.properties = dbus.Interface(self.object, I_PROP)
             return self.dbusWrapedInterface(*args, **kw)
         
         return dbusWrapedInterface
+    
+    def reconnect(self, session=None):
+        '''
+        Required if you need update session/proxy object/interfaces
+        '''
+        
+        session = session or self.session
+        if session == self.session:
+            self.session.close()
+            session = self.session = dbus.SessionBus()
+        self.object = session.get_object(self.uri, self.path)
+        self.interface = dbus.Interface(self.object, dbus_interface=self.iface)
+        self.properties = dbus.Interface(self.object, I_PROP)
     
     def dbusWrapedInterface(self, *args, **kw):
         ''' Called when some decoreted class was called
@@ -62,9 +75,9 @@ class DbusInterface(Decorator):
         #call decorated class constructor
         new_obj = self.wrapped(*args, **kw)
         if new_obj:
-            setattr(new_obj, '_dbus_interface_info', self)
+            setattr(new_obj, ATTR_KEY, self)
         elif len(args) > 0:
-            setattr(args[0], '_dbus_interface_info', self)
+            setattr(args[0], ATTR_KEY, self)
         
         return new_obj
 

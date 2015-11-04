@@ -4,6 +4,10 @@ This is not part of specification
 Helper class to make it work as python lib
 '''
 
+I_PROP = 'org.freedesktop.DBus.Properties'
+ARG_KEY = 'dbus_interface_info'
+ATTR_KEY = '_dbus_interface_info'
+
 
 class Decorator(object):
     def _update_me(self, target=None):

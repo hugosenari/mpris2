@@ -1,4 +1,4 @@
-from .base import Decorator
+from .base import Decorator, ATTR_KEY
 
 
 class DbusSignal(Decorator):
@@ -26,7 +26,8 @@ class DbusSignal(Decorator):
 
     def __set__(self, obj, value):
         if obj:
-            interface = obj._dbus_interface_info.interface
+            _dbus = getattr(obj, ATTR_KEY)
+            interface = _dbus.interface
             def handle(*args, **kwds):
                 h = self.handler
                 h and h(*args, **kwds)
