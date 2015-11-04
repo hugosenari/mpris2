@@ -109,3 +109,4 @@ from .player import Player
 from .playlists import Playlists
 from .tracklist import TrackList
 from .utils import get_players_uri
+from .some_players import Some_Players as SomePlayers

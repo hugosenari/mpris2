@@ -81,7 +81,8 @@ def get_mainloop():
             if hasattr(self.app, 'exec_'):
                 self.app.exec_()
             if hasattr(self.app, 'exec'):
-                self.app.exec()
+                method = getattr(self.app, 'exec')
+                method(self.app)
 
     
     try:
