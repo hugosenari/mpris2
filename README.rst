@@ -1,3 +1,20 @@
+====================================
+Python usable definiton of MPRIS2
+====================================
+
+This is my lib to help developers work with MPRIS2 and python
+
+See Mpris2 site (http://specifications.freedesktop.org/mpris-spec/2.2/)
+
+See also:
+========
+
+pympris (https://github.com/wistful/pympris)
+
+
+Example:
+========
+
 Here is some examples, that shows how to work with this lib.
 
 

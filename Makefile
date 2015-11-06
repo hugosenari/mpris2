@@ -4,7 +4,7 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
-SPHINIXBUILDAPI = sphinx-apidoc
+SPHINIXBUILDAPI = sphinx-apidoc -e
 PAPER         =
 BUILDDIR      = build
 INTALLCMD     = python setup.py
