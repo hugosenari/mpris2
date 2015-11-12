@@ -11,7 +11,7 @@ with open('README.rst') as readme_file:
     readme = readme_file.read()
 
 setup(name='mpris2',
-      version='0.9',
+      version='1.0',
       description='Python mpris2 definition',
       author='hugosenari',
       author_email='hugosenari@gmail.com',
@@ -21,12 +21,13 @@ setup(name='mpris2',
       requires=(),
       license = "GPL",
       classifiers=[
-            "Development Status :: 4 - Beta",
-            "Environment :: X11 Applications",
+            "Development Status :: 3 - Alpha",
             "Intended Audience :: Developers",
+            "Topic :: Multimedia :: Sound/Audio",
+            "Topic :: Software Development :: Libraries :: Python Modules",
             "License :: OSI Approved :: GNU General Public License (GPL)",
             "Programming Language :: Python :: 2.7",
-            "Topic :: Software Development :: Libraries :: Python Modules",
+            "Programming Language :: Python :: 3.4"
       ],
       long_description = readme
 )
