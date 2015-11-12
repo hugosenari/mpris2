@@ -11,13 +11,13 @@ with open('README.rst') as readme_file:
     readme = readme_file.read()
 
 setup(name='mpris2',
-      version='1.0',
+      version='1.0.1',
       description='Python mpris2 definition',
       author='hugosenari',
       author_email='hugosenari@gmail.com',
       url='https://github.com/hugosenari/mpris2',
       keywords = ["dbus", "mpris2"],
-      packages=('mpris2',),
+      packages=('mpris2', 'mpris2.decorator', 'mpris2.types'),
       requires=(),
       license = "GPL",
       classifiers=[

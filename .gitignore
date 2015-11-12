@@ -4,3 +4,6 @@ build
 .pydevproject
 .settings
 .idea
+.pypirc
+MANIFEST
+dist/
