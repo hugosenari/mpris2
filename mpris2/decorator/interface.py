@@ -8,48 +8,27 @@ import dbus
 from functools import wraps
 from .base import Decorator, ARG_KEY, I_PROP, ATTR_KEY
 
-
-
-class DbusInterface(Decorator):
-
+class _DbusInfoProperty(object):
     def __init__(self, iface=None, path=None, 
-                 uri=None, dbus_object=None, session=None):
+                 uri=None, dbus_object=None, session=None, wrapped=None):
         self.iface = iface
         self.path = path
         self.uri = uri
         self.object = dbus_object
         self.session = session
-        self.wrapped = None,
+        self.wrapped = wrapped
         self.interface = None
         self.properties = None
+        
+        if not self.object:
+            bus = self.session = self.session or dbus.SessionBus()
+            self.object = bus.get_object(self.uri, self.path)
+        if not self.interface:
+            self.interface = dbus.Interface(self.object,
+                                            dbus_interface=self.iface)
+        if not self.properties:
+            self.properties = dbus.Interface(self.object, I_PROP)
 
-    def __call__(self, meth):
-        ''' Called when any decorated class is loaded'''
-        self.wrapped = meth
-        self._update_me(meth)
-        
-        @wraps(meth)
-        def dbusWrapedInterface(*args, **kw):
-            _args = kw.get(ARG_KEY, {})
-            self.uri = _args.get('dbus_uri', self.uri)
-            self.path = _args.get('dbus_path', self.path) 
-            self.iface = _args.get('dbus_iface', self.iface)
-            self.object = _args.get('dbus_object', self.object)
-            self.session = _args.get('dbus_session', self.session)
-            if ARG_KEY in kw: 
-                del kw[ARG_KEY]
-            if not self.object:
-                bus = self.session = self.session or dbus.SessionBus()
-                self.object = bus.get_object(self.uri, self.path)
-            if not self.interface:
-                self.interface = dbus.Interface(self.object,
-                                                dbus_interface=self.iface)
-            if not self.properties:
-                self.properties = dbus.Interface(self.object, I_PROP)
-            return self.dbusWrapedInterface(*args, **kw)
-        
-        return dbusWrapedInterface
-    
     def reconnect(self, session=None):
         '''
         Required if you need update session/proxy object/interfaces
@@ -62,8 +41,43 @@ class DbusInterface(Decorator):
         self.object = session.get_object(self.uri, self.path)
         self.interface = dbus.Interface(self.object, dbus_interface=self.iface)
         self.properties = dbus.Interface(self.object, I_PROP)
+
+
+class DbusInterface(Decorator):
+
+    def __init__(self, iface=None, path=None, 
+                 uri=None, dbus_object=None, session=None):
+        self.iface = iface
+        self.path = path
+        self.uri = uri
+        self.object = dbus_object
+        self.session = session
+        self.wrapped = None
+
+    def __call__(self, meth):
+        ''' Called when any decorated class is loaded'''
+        self.wrapped = meth
+        self._update_me(meth)
+        
+        @wraps(meth)
+        def dbusWrapedInterface(*args, **kw):
+            _args = kw.get(ARG_KEY, {})
+            info_property = _DbusInfoProperty(
+                iface=_args.get('dbus_iface', self.iface),
+                path=_args.get('dbus_path', self.path),
+                uri=_args.get('dbus_uri', self.uri),
+                dbus_object =_args.get('dbus_object', self.object),
+                session =_args.get('dbus_session', self.session),
+                wrapped=self.wrapped
+            )
+            if ARG_KEY in kw: 
+                del kw[ARG_KEY]
+                
+            return self.dbusWrapedInterface(info_property, *args, **kw)
+        
+        return dbusWrapedInterface
     
-    def dbusWrapedInterface(self, *args, **kw):
+    def dbusWrapedInterface(self, info_property, *args, **kw):
         ''' Called when some decoreted class was called
         Inject attrs from decorator at new object then return object
         
@@ -75,9 +89,9 @@ class DbusInterface(Decorator):
         #call decorated class constructor
         new_obj = self.wrapped(*args, **kw)
         if new_obj:
-            setattr(new_obj, ATTR_KEY, self)
+            setattr(new_obj, ATTR_KEY, info_property)
         elif len(args) > 0:
-            setattr(args[0], ATTR_KEY, self)
+            setattr(args[0], ATTR_KEY, info_property)
         
         return new_obj
 
