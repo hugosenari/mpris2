@@ -45,7 +45,7 @@ class DbusSignal(Decorator):
 
 if __name__ == '__main__':
     from .interface import DbusInterface
-    from mpris2.utils import get_mainloop
+    from .utils import get_mainloop
     mainloop = get_mainloop()
     print('mainloop', mainloop)
     
