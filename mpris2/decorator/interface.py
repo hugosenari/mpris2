@@ -8,6 +8,7 @@ import dbus
 from functools import wraps
 from .base import Decorator, ARG_KEY, I_PROP, ATTR_KEY
 
+
 class _DbusInfoProperty(object):
     def __init__(self, iface=None, path=None, 
                  uri=None, dbus_object=None, session=None, wrapped=None):
