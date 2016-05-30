@@ -24,10 +24,10 @@ class Volume(float):
         self._volume = float(volume)
     
     def __float__(self):
-        return self._time
+        return self._volume
     
     def __str__(self):
-        return str(self._time)
+        return str(self._volume)
 
 
 if __name__ == '__main__':
