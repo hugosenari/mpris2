@@ -32,7 +32,7 @@ class Playlist_Ordering(str):
         self._ordering = ordering
 
     def __str__(self):
-        return self._status
+        return self._ordering
 
 
 if __name__ == '__main__':
