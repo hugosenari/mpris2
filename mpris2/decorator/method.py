@@ -20,13 +20,17 @@ class DbusMethod(Decorator):
                  iface=None,
                  produces=lambda resp: resp,
                  args_to_dbus=args_to_dbus,
-                 kw_to_dbus=kw_to_dbus):
+                 kw_to_dbus=kw_to_dbus,
+                 std_args=(),
+                 std_kwds={}):
         self.meth = meth
         self.handler = None
         self.produces = produces
         self.iface = iface
         self.args_to_dbus = args_to_dbus
         self.kw_to_dbus = kw_to_dbus
+        self.std_args = std_args
+        self.std_kwds = std_kwds
         self.obj = None
         self._update_me(meth)
 
@@ -49,8 +53,12 @@ class DbusMethod(Decorator):
             iface = _dbus.iface
         bus_obj = _dbus.object
         bus_meth = bus_obj.get_dbus_method(self.meth.__name__, iface)
-        args = self.convert_args_to_dbus_args(*args)
-        kwds = self.convert_kw_to_dbus_kw(**kwds)
+        _len = len(self.std_args) - len(args)
+        _args = args + self.std_args[-_len:] if _len > 0 else args
+        args = self.convert_args_to_dbus_args(*_args)
+        _kwds = self.std_kwds.copy()
+        _kwds.update(kwds)
+        kwds = self.convert_kw_to_dbus_kw(**_kwds)
         result = bus_meth(*args, **kwds)
         return self.produces(result)
     
@@ -99,6 +107,6 @@ if __name__ == '__main__':
     d = Example(
         dbus_interface_info={
             'dbus_uri': 'org.freedesktop.DBus'})
-        
+    
     assert d.GetId()
     assert d.GetNameOwner('org.freedesktop.DBus') == 'org.freedesktop.DBus'
