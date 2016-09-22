@@ -89,23 +89,12 @@ class DbusInterface(Decorator):
         '''
         #call decorated class constructor
         new_obj = self.wrapped(*args, **kw)
-        if new_obj or len(args) > 0:
-            
-            if new_obj:
-                setattr(new_obj, ATTR_KEY, info_property)
-                setattr(new_obj, "GetAll", GetAll(new_obj))
-            elif len(args) > 0:
-                setattr(args[0], ATTR_KEY, info_property)
-                setattr(args[0], "GetAll", GetAll(args[0]))
+        if new_obj:
+            setattr(new_obj, ATTR_KEY, info_property)
+        elif len(args) > 0:
+            setattr(args[0], ATTR_KEY, info_property)
         
         return new_obj
-    
-class GetAll(object):
-    def __init__(self, obj):
-        self.obj = obj
-
-    def __call__(self, meth=None):
-        return ("""I'm a bit lazy right now but you can implement GetAll here.""",)
 
 
 if __name__ == '__main__':
@@ -114,12 +103,11 @@ if __name__ == '__main__':
     class Example(object):
         pass
 
+
     d = Example(
         dbus_interface_info={
             'dbus_uri': 'org.freedesktop.DBus'})
     
-    print(d.GetAll())
-        
     assert d._dbus_interface_info.iface == 'org.freedesktop.DBus'
     assert d._dbus_interface_info.path == '/'
     assert d._dbus_interface_info.uri == 'org.freedesktop.DBus'
