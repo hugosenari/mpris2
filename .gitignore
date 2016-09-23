@@ -7,3 +7,6 @@ build
 .pypirc
 MANIFEST
 dist/
+.cache
+.coverage
+mpris2.komodoproject
