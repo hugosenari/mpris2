@@ -106,7 +106,6 @@ if __name__ == '__main__':
     d = Example(
         dbus_interface_info={
             'dbus_uri': 'org.freedesktop.DBus'})
-        
     assert d._dbus_interface_info.iface == 'org.freedesktop.DBus'
     assert d._dbus_interface_info.path == '/'
     assert d._dbus_interface_info.uri == 'org.freedesktop.DBus'
