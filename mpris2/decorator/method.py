@@ -117,9 +117,5 @@ if __name__ == '__main__':
     d = Example(
         dbus_interface_info={
             'dbus_uri': 'org.freedesktop.DBus'})
-    
     assert d.GetId()
     assert d.GetNameOwner('org.freedesktop.DBus') == 'org.freedesktop.DBus'
-
-if __name__ == '__test__':
-    pass
