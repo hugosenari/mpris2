@@ -103,6 +103,7 @@ if __name__ == '__main__':
     class Example(object):
         pass
 
+
     d = Example(
         dbus_interface_info={
             'dbus_uri': 'org.freedesktop.DBus'})

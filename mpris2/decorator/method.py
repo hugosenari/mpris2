@@ -20,13 +20,17 @@ class DbusMethod(Decorator):
                  iface=None,
                  produces=lambda resp: resp,
                  args_to_dbus=args_to_dbus,
-                 kw_to_dbus=kw_to_dbus):
+                 kw_to_dbus=kw_to_dbus,
+                 std_args=(),
+                 std_kwds={}):
         self.meth = meth
         self.handler = None
         self.produces = produces
         self.iface = iface
         self.args_to_dbus = args_to_dbus
         self.kw_to_dbus = kw_to_dbus
+        self.std_args = std_args
+        self.std_kwds = std_kwds
         self.obj = None
         self._update_me(meth)
 
@@ -49,10 +53,24 @@ class DbusMethod(Decorator):
             iface = _dbus.iface
         bus_obj = _dbus.object
         bus_meth = bus_obj.get_dbus_method(self.meth.__name__, iface)
-        args = self.convert_args_to_dbus_args(*args)
-        kwds = self.convert_kw_to_dbus_kw(**kwds)
+        _args = self.merge_args(args, self.std_args)
+        args = self.convert_args_to_dbus_args(*_args)
+        _kwds = self.std_kwds.copy()
+        _kwds.update(kwds)
+        kwds = self.convert_kw_to_dbus_kw(**_kwds)
         result = bus_meth(*args, **kwds)
         return self.produces(result)
+    
+    @classmethod
+    def merge_args(cls, args, std_args):
+        _len = len(std_args) - len(args)
+        return args + std_args[-_len:] if _len > 0 else args
+    
+    @classmethod
+    def merge_kwds(cls, kwds, std_kwds):
+        _kwds = std_kwds.copy()
+        _kwds.update(kwds)
+        return _kwds
     
     def convert_args_to_dbus_args(self, *args):
         args_to_dbus = self.args_to_dbus
